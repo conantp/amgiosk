@@ -5,30 +5,89 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/app.css" rel="stylesheet">
 
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-
-
-    </style>
-
 
   </head>
   <body>
-    <ul id="messages"></ul>
+    <h1>
+
+      <img src='http://www.ashevillemusicguide.com/sites/default/files/NEW-LOGO_1.png' />
+      <span>
+        Kiosk Remote
+      </span>
+    </h1>
+    <div class='controls'>
+      <h2 class='current-date'>Current Date</h2>
+      <div class='date-pager'>
+        <span class='previous-page'>
+          <i class="fa fa-arrow-circle-left"></i>
+          Previous
+        </span>
+        <span class='home-page'>
+          <i class="fa fa-home"></i>
+          Today
+        </span>
+        <span class='next-page'>
+          Next
+          <i class="fa fa-arrow-circle-right"></i>
+        </span>
+      </div>
+      <div class='neighborhood-select-button'>
+          <i class="fa fa-home"></i>
+          Neighborhood
+      </div>
+      <div class='controls calendar-filter'>
+        <h3>Filters</h3>
+        <div>
+        <span class="xpress" data-category-filter="smart_bets" title="Filter by shows featured in Mountain Xpress"><img src="http://www.ashevillemusicguide.com/sites/all/themes/amg_omega/images/xpress-icon.png">
+          Mountain Xpress
+        </span>
+      </div>
+      </div>
+      <div class='neighborhood-picker'>
+        <h2>Filter by Neighborhood</h2>
+        <ul class='neighborhood-list'>
+          <li data-id='6'>Downtown</li>
+          <li data-id='8'>West Asheville</li>
+        </ul>
+        <div class='cancel'>Cancel</div>
+      </div>
+    </div>
+
+
+<!--     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    </form> -->
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
+       // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
+
+//        socket.emit('chat message',"nextpage");
+
+      $(".next-page").click(function(){
+          socket.emit('page-next', 'page-next');
+      });
+
+      $(".home-page").click(function(){
+          socket.emit('page-today', 'page-today');
+      });
+
+      $(".previous-page").click(function(){
+          socket.emit('page-previous', 'page-previous');
+      });
+
+      $(".neighborhood-select-button").click(function(){
+        $(".neighborhood-picker").slideDown('fast');
+      });
+
+      $(".cancel, .neighborhood-list li").click(function(){
+        socket.emit('neighborhood select', $(this).attr('data-id'));
+
+        $(".neighborhood-picker").slideUp('fast');
+      });
+
       $('form').submit(function(){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');

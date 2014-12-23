@@ -34,9 +34,24 @@ io.on('connection', function(socket){
 	    io.emit('chat message', msg);
 	  });
 
-	socket.on('chat message2', function(msg){
+	socket.on('neighborhood select', function(msg){
 		console.log('message2' + msg);
-	    io.emit('chat message2', msg);
+	    io.emit('neighborhood select', msg);
+	  });
+
+	socket.on('page-next', function(msg){
+		console.log('page-next: ' + msg);
+	    io.emit('page-next', msg);
+	  });
+
+	socket.on('page-today', function(msg){
+		console.log('page-today: ' + msg);
+	    io.emit('page-today', msg);
+	  });
+
+	socket.on('page-previous', function(msg){
+		console.log('page-previous: ' + msg);
+	    io.emit('page-previous', msg);
 	  });
 });
 
