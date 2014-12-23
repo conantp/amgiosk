@@ -129,6 +129,7 @@ h2{
 	width: 100%;
 	padding: 10px;
 	cursor: pointer;
+	height: 50px;
 }
 
 .controls span.xpress{
