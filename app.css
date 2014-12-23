@@ -16,6 +16,7 @@ h1{
 	border-radius: 3px;
 }
 h1 span{
+	display: none;
 	float: right;
 	margin-top: 58px;
 	font-size: 1.0em;
