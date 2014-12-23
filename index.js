@@ -14,6 +14,13 @@ app.get('/', function(req, res){
 
 });
 
+app.get('/app.css', function(req, res){
+//  res.send('<h1>Hello world</h1>');
+  res.sendFile(__dirname + '/app.css');
+
+});
+
+
 io.on('connection', function(socket){
   console.log('a user connected');
 
