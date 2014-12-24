@@ -10,12 +10,12 @@
   </head>
   <body>
     <h1>
-
       <img src='http://www.ashevillemusicguide.com/sites/default/files/NEW-LOGO_1.png' />
       <span>
         Kiosk Remote
       </span>
     </h1>
+    <div class='controls-one'>
     <div class='controls'>
       <h2 class='current-date'>Current Date</h2>
       <div class='date-pager'>
@@ -32,9 +32,22 @@
           <i class="fa fa-arrow-circle-right"></i>
         </span>
       </div>
-      <div class='neighborhood-select-button'>
-          <i class="fa fa-home"></i>
-          Neighborhood
+      <div>
+        <span class='neighborhood-select-button'>
+            <i class="fa fa-home"></i>
+            Neighborhood
+        </span>
+          <span class='filter-select-button'>
+            <i class="fa fa-arrow-circle-down"></i>
+            Filter
+        </span>
+        <span class='search-button'>
+            <i class="fa fa-search"></i>
+            Search
+        </span>
+      </div>
+      <div>
+        <input type='color' value=''>
       </div>
       <!-- <div class='controls calendar-filter'>
         <h3>Filters</h3>
@@ -44,7 +57,7 @@
           </span>
         </div>
       </div> -->
-      <div class='neighborhood-picker'>
+      <div class='neighborhood-picker slideup-window'>
         <h2>Filter by Neighborhood</h2>
         <ul class='neighborhood-list'>
           <li data-id='6'>Downtown</li>
@@ -52,6 +65,17 @@
         </ul>
         <div class='cancel'>Cancel</div>
       </div>
+
+
+      <div class='search-window slideup-window'>
+        <h2>Search for Shows + Bands</h2>
+        <div>
+                      <i class="fa fa-search"></i>
+            <input type='search' value='' placeholder='Search' />
+          </div>
+
+      </div>
+
     </div>
 
 
@@ -97,6 +121,17 @@
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });
+
+            $('input[type="color"]').change(function(){
+//                alert('color' + $(this).val() );
+              $('body').css('background-color', $(this).val() );
+            });
+
+            $(".search-button").click(function(){
+        $(".search-window").slideDown('fast');
+      });
+
+
     </script>
   </body>
 </html>

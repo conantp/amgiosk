@@ -10,7 +10,7 @@
 h1{
 	text-align: center;
 	padding: 0 10px;
-	background: rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.2);
 	margin: 10px;
 	border-radius: 3px;
@@ -61,14 +61,16 @@ h2{
 
 .controls span{
   font-size: 1.0em;
-  border: 1px solid white;
+  border: 1px solid rgba(0,0,0,0.8);
   overflow: hidden;
-  padding: 10px;
+  padding: 20px 5px;
   display: inline-block;
   cursor: pointer;
   width: 30%;
   border-radius: 5px;
   margin: 10px 1%;
+  background: rgba(0,0,0,0.3);
+  min-height: 44px;
 }
 
 .controls span:hover{
@@ -97,7 +99,7 @@ h2{
 	background: #f1c40f;
 }
 
-.neighborhood-picker{
+.slideup-window{
 	padding: 20px;
 	display: none;
 	position: absolute;
@@ -139,3 +141,18 @@ h2{
 
 }
 
+
+
+.search-window input{
+	height: 88px;
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+.search-window{
+	font-size: 1.5em;
+}
+
+.search-window h2{
+	margin-bottom: 20px;
+}
