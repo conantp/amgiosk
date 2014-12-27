@@ -6,18 +6,14 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 
-
-
 app.get('/', function(req, res){
 //  res.send('<h1>Hello world</h1>');
   res.sendFile(__dirname + '/index.html');
-
 });
 
 app.get('/app.css', function(req, res){
 //  res.send('<h1>Hello world</h1>');
   res.sendFile(__dirname + '/app.css');
-
 });
 
 

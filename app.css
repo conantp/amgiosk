@@ -12,8 +12,8 @@ h1{
 	padding: 0 10px;
 	background: rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.2);
-	margin: 10px;
-	border-radius: 3px;
+	margin: 0 10px 0 10px;
+	border-radius: 0 0 3px 3px;
 }
 h1 span{
 	display: none;
@@ -43,7 +43,7 @@ h1 img{
 }
 
 body{
-  background: rgba(0,0,0,0.8);
+  background: rgba(46, 204, 113,0.5);
   color: white;
   font-size: 1.0em;
   line-height: 1.4em;
@@ -63,7 +63,7 @@ h2{
   font-size: 1.0em;
   border: 1px solid rgba(0,0,0,0.8);
   overflow: hidden;
-  padding: 20px 5px;
+  padding: 20px 1%;
   display: inline-block;
   cursor: pointer;
   width: 30%;
@@ -74,18 +74,19 @@ h2{
 }
 
 .controls span:hover{
+	background: rgba(0,0,0,0.6);
 }
 
 .next-page:hover{
-	background: #2ecc71;
+	/*background: #2ecc71;*/
 }
 
 .home-page:hover{
-	background: #34495e;
+	/*background: rgba(41, 128, 185,0.2);*/
 }
 
 .previous-page:hover{
-	background: #e67e22;
+	/*background: #e67e22;*/
 }
 
 .neighborhood-select-button{
@@ -96,7 +97,7 @@ h2{
 }
 
 .neighborhood-select-button:hover{
-	background: #f1c40f;
+	/*background: #f1c40f;*/
 }
 
 .slideup-window{
