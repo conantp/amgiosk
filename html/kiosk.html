@@ -8,70 +8,62 @@
   </head>
   <body>
     <div class="wrapper">
-      <div id="slidr-multi">
-        <ul id="slidr-ul" style="display: inline">
-          <li data-slidr="one">apple</li>
-          <li data-slidr="two">banana</li>
-          <li data-slidr="three">coconut</li>
-        </ul>
-
-        <div id="slidr-img" style="display: inline-block">
-          <img data-slidr="one" src="/static/images/apple.png">
-          <img data-slidr="two" src="/static/images/banana.png">
-          <img data-slidr="three" src="/static/images/coconut.png">
-        </div>
-
-        <div id="slidr-div" style="dislay: block">
-          <div data-slidr="one">apple</div>
-          <div data-slidr="two">banana</div>
-          <div data-slidr="three">coconut</div>
-        </div>
-      </div>       
-      <div class="slide-left">
-        LEFT
-      </div>
-      <div class="slide-right">
-        RIGHT
-      </div>
+       
       <div id='kiosk-slide-container'>
-        <div id="slidr-id" style="dislay: block">
-          <div data-slidr="one">
-            <img src='/img/jonathan-byrd.jpg' />
-            <div class="artist-slide-caption">
-              <h2>Jonathan Byrd</h2>
-              <h4>Rock/Country</h4> 
+
+        <div data-slidr='main-slide-show' class='kiosk-main-slide kiosk-main-slide-show'>
+           <div class='next'>
+            NEXT
+          </div>
+          <div class="show-block">
+            <div id='show-block-slidr'>
+
             </div>
           </div>
-          <div data-slidr="two">
-            <img src='/img/featured-show-3.jpg' />
+          <div class='date-block'>
+            <div id='date-block-slidr'>
+              <img data-slidr='date-0' src='/img/featured-show-2.jpg' />
+              <img data-slidr='date-1' src='/img/featured-show-2.jpg' />
+            </div>
           </div>
-           <div data-slidr="three">
-                      <img src='/img/featured-show-2.jpg' />
 
+          <div class='venue-block'>
+            <div id='venue-block-slidr'>
+
+            </div>
           </div>
-           <div data-slidr="four">
-                      <img src='/img/featured-show-1.jpg' />
 
+          <div class='kiosk-footer'>
+            <img src='/img/featured-show-4.jpg' />
+          </div>
+      </div>
+      <div data-slidr='main-slide-venue' class='kiosk-main-slide kiosk-main-slide-venue'>
+           <div class='show-next'>
+            NEXT
+          </div>
+          <div class='venue-block'>
+            <div id='venue-block-slidr-2'>
+            </div>
+          </div>
+        <div class='venue-show-block'>
+          <div id='venue-show-block-slidr'>
+            <img class='venue-show-item' data-slidr='venue-show-0' src='/img/venue-detail-2.jpg'>
+            <img class='venue-show-item' data-slidr='venue-show-1'  src='/img/venue-detail-2.jpg'>
           </div>
         </div>
         <div>
-                      <img src='/img/featured-show-2.jpg' />
-
-                      <img src='/img/featured-show-3.jpg' />
-                    </div>
-
+          <img src='/img/venue-detail-3.jpg'>
+        </div>
       </div>
-      <div class='kiosk-footer'>
-        Interact with the AMGmote!
-      </div>
-
      
     </div>
-
+  </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="/js/kiosk.js"></script>
+    <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=amgiosk_load_venue_image_json"></script>
+    <script src="http://www.ashevillemusicguide.com/testservice/views/kiosk_shows.jsonp?callback=amgiosk_load_show_data_json"></script>
     
   </body>
 </html>

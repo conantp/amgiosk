@@ -21,7 +21,7 @@ h2, h3, h4{
 }
 
 .kiosk-slide-container{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -41,4 +41,65 @@ h2, h3, h4{
 	bottom: 0px;
 	text-align:center;
 	width: 100%;
+}
+
+.venue-item{
+/*	position: relative;
+*/	
+}
+
+
+.venue-item h2{
+		text-align: center;
+		line-height: 1.2em;
+		background: rgba(0,0,0,0.8);
+		color: white;
+			color: white;
+	position: absolute;
+	bottom: 150px;
+	text-align:center;
+	width: 100%;
+	padding: 20px;
+
+/*
+	position: absolute;
+	bottom: 0;
+	color: white;*/
+}
+
+.venue-item img{
+	/*position: absolute;
+	top: 0;
+	left: 0;
+*/
+}
+
+.venue-item > div{
+	color: white;
+	position: absolute;
+	bottom: 50px;
+	text-align:center;
+	width: 100%;
+		background: rgba(0,0,0,0.8);
+}
+
+.venue-item{
+		position:relative;
+	height: 400px;
+}
+
+.show-item img{
+
+}
+
+.show-item h2{
+	line-height: 1.2em;
+	background: rgba(0,0,0,0.8);
+	padding: 40px;
+}
+
+.next, .show-next{
+	color: red;
+	width: 100%;
+	background: white;
 }
