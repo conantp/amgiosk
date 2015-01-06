@@ -1,0 +1,177 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'ftpm' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose cache add [ 'ftpm', null ]
+5 verbose cache add name=undefined spec="ftpm" args=["ftpm",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'ftpm',
+6 verbose parsed url   path: 'ftpm',
+6 verbose parsed url   href: 'ftpm' }
+7 silly lockFile efd00a2c-ftpm ftpm
+8 verbose lock ftpm /Users/jessemichel/.npm/efd00a2c-ftpm.lock
+9 silly lockFile efd00a2c-ftpm ftpm
+10 silly lockFile efd00a2c-ftpm ftpm
+11 verbose addNamed [ 'ftpm', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 1c0c681a-ftpm ftpm@
+14 verbose lock ftpm@ /Users/jessemichel/.npm/1c0c681a-ftpm.lock
+15 silly addNameRange { name: 'ftpm', range: '*', hasData: false }
+16 verbose request where is /ftpm
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 12dfdfbad1da31e9
+19 verbose url raw /ftpm
+20 verbose url resolving [ 'https://registry.npmjs.org/', './ftpm' ]
+21 verbose url resolved https://registry.npmjs.org/ftpm
+22 verbose request where is https://registry.npmjs.org/ftpm
+23 info trying registry request attempt 1 at 13:23:23
+24 http GET https://registry.npmjs.org/ftpm
+25 http 200 https://registry.npmjs.org/ftpm
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Tue, 06 Jan 2015 18:23:24 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"8PCLJPJ4APMI9H712HUN9ITY9"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '22107',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-iad2132-IAD',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1420568603.636240,VS0,VE432',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'ftpm', range: '*', hasData: true }
+28 silly addNameRange versions [ 'ftpm',
+28 silly addNameRange   [ '0.0.1',
+28 silly addNameRange     '0.0.2',
+28 silly addNameRange     '0.0.3',
+28 silly addNameRange     '0.0.4',
+28 silly addNameRange     '0.0.5',
+28 silly addNameRange     '0.0.6',
+28 silly addNameRange     '0.0.7',
+28 silly addNameRange     '0.0.8',
+28 silly addNameRange     '0.0.9',
+28 silly addNameRange     '0.0.10',
+28 silly addNameRange     '0.0.11',
+28 silly addNameRange     '0.0.12',
+28 silly addNameRange     '0.0.13',
+28 silly addNameRange     '0.0.14',
+28 silly addNameRange     '0.0.15',
+28 silly addNameRange     '0.0.16',
+28 silly addNameRange     '0.0.18',
+28 silly addNameRange     '0.0.1-8.1',
+28 silly addNameRange     '0.0.1-8.2' ] ]
+29 verbose addNamed [ 'ftpm', '0.0.1-8.2' ]
+30 verbose addNamed [ '0.0.1-8.2', '0.0.1-8.2' ]
+31 silly lockFile 61070613-ftpm-0-0-1-8-2 ftpm@0.0.1-8.2
+32 verbose lock ftpm@0.0.1-8.2 /Users/jessemichel/.npm/61070613-ftpm-0-0-1-8-2.lock
+33 warn deprecated ftpm@0.0.1-8.2: project deprecated
+34 silly lockFile 206a51d2-pmjs-org-ftpm-ftpm-0-0-1-8-2-tgz https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+35 verbose lock https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz /Users/jessemichel/.npm/206a51d2-pmjs-org-ftpm-ftpm-0-0-1-8-2-tgz.lock
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz',
+36 verbose addRemoteTarball   'd388edf19686eab41012085c0c99ad4a7472e833' ]
+37 info retry fetch attempt 1 at 13:23:23
+38 verbose fetch to= /var/folders/8m/gjx06hbj3cqbvlj53hz38f_w0000gn/T/npm-8116-l3cYoQ79/registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+39 http GET https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+40 http 200 https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+41 silly lockFile 206a51d2-pmjs-org-ftpm-ftpm-0-0-1-8-2-tgz https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+42 silly lockFile 206a51d2-pmjs-org-ftpm-ftpm-0-0-1-8-2-tgz https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz
+43 silly lockFile 61070613-ftpm-0-0-1-8-2 ftpm@0.0.1-8.2
+44 silly lockFile 61070613-ftpm-0-0-1-8-2 ftpm@0.0.1-8.2
+45 silly lockFile 1c0c681a-ftpm ftpm@
+46 silly lockFile 1c0c681a-ftpm ftpm@
+47 silly resolved [ { name: 'ftpm',
+47 silly resolved     version: '0.0.1-8.2',
+47 silly resolved     description: '[DEPRECATED] A Font Package Manager built on top of Google Web Fonts',
+47 silly resolved     main: 'ftpm.js',
+47 silly resolved     directories: { test: 'test' },
+47 silly resolved     dependencies:
+47 silly resolved      { colors: '^0.6.2',
+47 silly resolved        commander: '^2.2.0',
+47 silly resolved        lodash: '^2.4.1',
+47 silly resolved        promptly: '^0.2.0',
+47 silly resolved        request: '^2.36.0',
+47 silly resolved        wrench: '^1.5.8' },
+47 silly resolved     bin: { ftpm: './ftpm.js' },
+47 silly resolved     engines: { node: '>=0.8.0' },
+47 silly resolved     preferGlobal: true,
+47 silly resolved     devDependencies: { jshint: '^2.5.2', mocha: '^1.20.1', should: '^4.0.4' },
+47 silly resolved     repository: { type: 'git', url: 'https://github.com/heldr/ftpm.git' },
+47 silly resolved     keywords:
+47 silly resolved      [ 'font',
+47 silly resolved        'management',
+47 silly resolved        'package',
+47 silly resolved        'manager',
+47 silly resolved        'font',
+47 silly resolved        'woff',
+47 silly resolved        'ttf',
+47 silly resolved        'google',
+47 silly resolved        'fonts' ],
+47 silly resolved     author: { name: 'Helder Santana' },
+47 silly resolved     license: 'MIT',
+47 silly resolved     gitHead: '45907f8d28273ebe02cdef987413a49a385edc97',
+47 silly resolved     bugs: { url: 'https://github.com/heldr/ftpm/issues' },
+47 silly resolved     homepage: 'https://github.com/heldr/ftpm',
+47 silly resolved     _id: 'ftpm@0.0.1-8.2',
+47 silly resolved     scripts: {},
+47 silly resolved     _shasum: 'd388edf19686eab41012085c0c99ad4a7472e833',
+47 silly resolved     _from: 'ftpm@',
+47 silly resolved     _npmVersion: '2.1.12',
+47 silly resolved     _nodeVersion: '0.10.33',
+47 silly resolved     _npmUser: { name: 'helder', email: 'heldr@me.com' },
+47 silly resolved     maintainers: [ [Object] ],
+47 silly resolved     dist:
+47 silly resolved      { shasum: 'd388edf19686eab41012085c0c99ad4a7472e833',
+47 silly resolved        tarball: 'http://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz' },
+47 silly resolved     deprecated: 'project deprecated',
+47 silly resolved     _resolved: 'https://registry.npmjs.org/ftpm/-/ftpm-0.0.1-8.2.tgz' } ]
+48 info install ftpm@0.0.1-8.2 into /usr/local/lib
+49 info installOne ftpm@0.0.1-8.2
+50 verbose lib/node_modules/ftpm unbuild
+51 verbose tar unpack /Users/jessemichel/.npm/ftpm/0.0.1-8.2/package.tgz
+52 silly lockFile 46245d56--usr-local-lib-node-modules-ftpm tar:///usr/local/lib/node_modules/ftpm
+53 verbose lock tar:///usr/local/lib/node_modules/ftpm /Users/jessemichel/.npm/46245d56--usr-local-lib-node-modules-ftpm.lock
+54 silly lockFile 449394a9-l-npm-ftpm-0-0-1-8-2-package-tgz tar:///Users/jessemichel/.npm/ftpm/0.0.1-8.2/package.tgz
+55 verbose lock tar:///Users/jessemichel/.npm/ftpm/0.0.1-8.2/package.tgz /Users/jessemichel/.npm/449394a9-l-npm-ftpm-0-0-1-8-2-package-tgz.lock
+56 silly gunzTarPerm modes [ '755', '644' ]
+57 error Error: EACCES, mkdir '/usr/local/lib/node_modules/ftpm'
+57 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/ftpm']
+57 error   errno: 3,
+57 error   code: 'EACCES',
+57 error   path: '/usr/local/lib/node_modules/ftpm',
+57 error   fstream_type: 'Directory',
+57 error   fstream_path: '/usr/local/lib/node_modules/ftpm',
+57 error   fstream_class: 'DirWriter',
+57 error   fstream_stack:
+57 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+57 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+57 error      'Object.oncomplete (fs.js:108:15)' ] }
+58 error Please try running this command again as root/Administrator.
+59 error System Darwin 14.0.0
+60 error command "node" "/usr/local/bin/npm" "install" "-g" "ftpm"
+61 error cwd /Users/jessemichel/Documents/git/amgiosk
+62 error node -v v0.10.35
+63 error npm -v 1.4.28
+64 error path /usr/local/lib/node_modules/ftpm
+65 error fstream_path /usr/local/lib/node_modules/ftpm
+66 error fstream_type Directory
+67 error fstream_class DirWriter
+68 error code EACCES
+69 error errno 3
+70 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/ftpm'
+71 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+71 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+71 error fstream_stack Object.oncomplete (fs.js:108:15)
+72 verbose exit [ 3, true ]
