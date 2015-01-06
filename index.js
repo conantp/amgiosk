@@ -1,4 +1,8 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
+
+var path = require('path');
+
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -6,15 +10,23 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 
+app.use('/img',express.static(path.join(__dirname, 'img')));
+app.use('/js',express.static(path.join(__dirname, 'js')));
+app.use('/styles',express.static(path.join(__dirname, 'styles')));
+
 app.get('/', function(req, res){
-//  res.send('<h1>Hello world</h1>');
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/kiosk', function(req, res){
+  res.sendFile(__dirname + '/html/kiosk.html');
+});
+
 app.get('/app.css', function(req, res){
-//  res.send('<h1>Hello world</h1>');
   res.sendFile(__dirname + '/app.css');
 });
+
+
 
 
 io.on('connection', function(socket){
