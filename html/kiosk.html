@@ -3,39 +3,70 @@
   <head>
     <title>AMGiosk</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="/styles/css/kiosk.css" rel="stylesheet">
   </head>
   <body>
-    <div id='kiosk-slide-container'>
-      <div id="slidr-id" style="dislay: block">
-        <div data-slidr="one">
-          <img src='/img/featured-show-1.jpg' />
-        </div>
-        <div data-slidr="two">
-                    <img src='/img/featured-show-3.jpg' />
+    <div class="wrapper">
+      <div id="slidr-multi">
+        <ul id="slidr-ul" style="display: inline">
+          <li data-slidr="one">apple</li>
+          <li data-slidr="two">banana</li>
+          <li data-slidr="three">coconut</li>
+        </ul>
 
+        <div id="slidr-img" style="display: inline-block">
+          <img data-slidr="one" src="/static/images/apple.png">
+          <img data-slidr="two" src="/static/images/banana.png">
+          <img data-slidr="three" src="/static/images/coconut.png">
         </div>
-         <div data-slidr="three">
-                    <img src='/img/featured-show-2.jpg' />
 
+        <div id="slidr-div" style="dislay: block">
+          <div data-slidr="one">apple</div>
+          <div data-slidr="two">banana</div>
+          <div data-slidr="three">coconut</div>
         </div>
-         <div data-slidr="four">
-                    <img src='/img/featured-show-1.jpg' />
-
-        </div>
+      </div>       
+      <div class="slide-left">
+        LEFT
       </div>
-      <div>
-                    <img src='/img/featured-show-2.jpg' />
+      <div class="slide-right">
+        RIGHT
+      </div>
+      <div id='kiosk-slide-container'>
+        <div id="slidr-id" style="dislay: block">
+          <div data-slidr="one">
+            <img src='/img/jonathan-byrd.jpg' />
+            <div class="artist-slide-caption">
+              <h2>Jonathan Byrd</h2>
+              <h4>Rock/Country</h4> 
+            </div>
+          </div>
+          <div data-slidr="two">
+            <img src='/img/featured-show-3.jpg' />
+          </div>
+           <div data-slidr="three">
+                      <img src='/img/featured-show-2.jpg' />
 
-                    <img src='/img/featured-show-3.jpg' />
-                  </div>
+          </div>
+           <div data-slidr="four">
+                      <img src='/img/featured-show-1.jpg' />
 
+          </div>
+        </div>
+        <div>
+                      <img src='/img/featured-show-2.jpg' />
+
+                      <img src='/img/featured-show-3.jpg' />
+                    </div>
+
+      </div>
+      <div class='kiosk-footer'>
+        Interact with the AMGmote!
+      </div>
+
+     
     </div>
-    <div class='kiosk-footer'>
-      Interact with the AMGmote!
-    </div>
-
-
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
