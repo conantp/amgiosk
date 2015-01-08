@@ -72,6 +72,11 @@ io.on('connection', function(socket){
 		console.log('page-down: ' + msg);
 	    io.emit('page-down', msg);
 	  });
+
+	socket.on('featured show', function(msg){
+		console.log('featured show: ' + msg);
+	    io.emit('featured show', msg);
+	  });
 });
 
 http.listen( (process.env.PORT || 3000), function(){

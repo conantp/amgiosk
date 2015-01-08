@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/app.css" rel="stylesheet">
+    <link href="/styles/css/kiosk.css" rel="stylesheet">
 
 
   </head>
@@ -58,6 +59,12 @@
       </div>
       <div>
         <input type='color' value=''>
+      </div>
+      <div id='remote-content-window-container'>
+        <h2>Content Window</h2>
+        <div id='remote-content-window'>
+
+        </div>
       </div>
       <!-- <div class='controls calendar-filter'>
         <h3>Filters</h3>
@@ -141,6 +148,13 @@
 
             $(".search-button").click(function(){
         $(".search-window").slideDown('fast');
+      });
+
+      // Real logic
+
+      socket.on('featured show', function(msg){
+        // $('#remote-content-window').append($('<li>').text(msg));
+         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
       });
 
 
