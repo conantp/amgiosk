@@ -7,6 +7,8 @@ var venue_show_block;
 
 var active_slide;
 
+var show_block_index;
+
 function amgiosk_load_venue_image_json(input){
   venue_data = input;
 
@@ -97,6 +99,8 @@ function amgiosk_load_show_data_json(input){
 console.log(show_key_array);
   // show_key_array.push('show-0');
 
+  show_block_index = 0;
+
   show_key_array.push(show_key_array[0]);
 
    show_block = slidr.create('show-block-slidr', {
@@ -149,6 +153,19 @@ function showPageNext(){
 
   setTimeout( date_block.slide('left'), 100);
   setTimeout( venue_block.slide('right'), 300);
+
+    show_block_index++;
+
+  if(show_block_index >= show_key_array.length){
+    show_block_index = 0;
+  }
+
+  active_show_id = show_key_array[show_block_index];
+  console.log(active_show_id);
+  active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
+  console.log(active_show_html);
+  socket.emit('featured show', $(active_show_html).html() );
+  console.log('emitted');
 }
 
 function showPagePrevious(){
