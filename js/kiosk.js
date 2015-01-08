@@ -240,20 +240,20 @@ main_slide_controller = slidr.create('kiosk-slide-container', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
     // before: function(e) { console.log('out: ' + e.out.slidr); },
     breadcrumbs: false,
-    controls: 'corner',
-    direction: 'vertical',
+    controls: 'none',
+    direction: 'horizontal',
     fade: false,
     keyboard: true,
     overflow: true,
     pause: false,
     theme: '#222',
-    timing: { 'cube': '0.5s ease-in' },
+    // timing: { 'cube': '0.5s ease-in' },
     touch: true,
-    transition: 'cube'
+    transition: 'linear'
   });
 
 main_key_array = ['main-slide-venue', 'main-slide-show', 'main-slide-venue', 'main-slide-show'];
-    main_slide_controller.add('v', main_key_array );
+    main_slide_controller.add('h', main_key_array );
     main_slide_controller.start();
 
 
@@ -283,13 +283,13 @@ kiosk.id = 1;
 
       socket.on('page-up', function(msg){
       console.log("Message received: "+ msg);
-      main_slide_controller.slide('up');
+      main_slide_controller.slide('left');
     });
 
 
     socket.on('page-down', function(msg){
       console.log("Message received: "+ msg);
-            main_slide_controller.slide('down');
+            main_slide_controller.slide('right');
 
     });
 
