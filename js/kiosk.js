@@ -15,7 +15,7 @@ function amgiosk_load_venue_image_json(input){
     venue = venue_data[index];
     key =  'venue-'+venue.nid;
 
-    venue_html = "<div class='venue-item' data-slidr='"+ key + "'>" + venue.image + "<h2>" + venue.node_title + "</h2>" + venue.address + "</div>";
+    venue_html = "<div class='venue-item' data-slidr='"+ key + "'>" + venue.image + "<div class='slide-content-wrapper'><h2><span>Upcoming Shows</span>" + venue.node_title + "</h2>" + venue.address + "</div></div>";
     $("#venue-block-slidr").append(venue_html);
     $("#venue-block-slidr-2").append(venue_html);
 
@@ -84,7 +84,7 @@ function amgiosk_load_show_data_json(input){
 
     show_html = "<div class='show-item' data-slidr='" + key + "' >"  
             + active_image + 
-            "<div class='artist-slide-caption'>" + 
+            "<div class='slide-content-wrapper'>" + 
               "<h2>" + show.node_title + "</h2> " + 
               "<h4>Rock/Country</h4> " + 
             "</div>" +
@@ -301,8 +301,17 @@ function amgiosk_load_venue_show_json(input){
   for(index in venue_show_data){
     venue_show = venue_show_data[index];
     key =  'venue-show-'+venue.nid;
+    revised_title = venue_show.node_title.substring(0, 20);
 
-    venue_show_html = "<div class='venue-show-item' data-slidr='"+ key + "'>" + "<h2>" + venue_show.node_title + "</h2>" + venue_show.date + venue_show.image + "</div>";
+    if(index > 8){
+      break;
+    }
+
+    if(venue_show.node_title.length > 24){
+      revised_title = revised_title + "...";
+    }
+
+    venue_show_html = "<div class='venue-show-item' data-slidr='"+ key + "'><div>" + "<h2>" + revised_title + "</h2>" + venue_show.date + venue_show.image + "</div></div>";
     $("#venue-show-block-slidr").append(venue_show_html);
 
     venue_show_image_array.push("" + key);
