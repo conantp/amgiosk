@@ -33,18 +33,28 @@
         </span>
       </div>
       <div>
+        <span class='up-page'>
+          Up
+          <i class="fa fa-arrow-circle-up"></i>
+        </span>
+                <span class='down-page'>
+          Down
+          <i class="fa fa-arrow-circle-down"></i>
+        </span>
+      </div>
+      <div>
         <span class='neighborhood-select-button'>
             <i class="fa fa-home"></i>
-            Neighborhood
+            Venue
         </span>
-          <span class='filter-select-button'>
+<!--           <span class='filter-select-button'>
             <i class="fa fa-arrow-circle-down"></i>
             Filter
         </span>
         <span class='search-button'>
             <i class="fa fa-search"></i>
             Search
-        </span>
+        </span> -->
       </div>
       <div>
         <input type='color' value=''>
@@ -58,10 +68,8 @@
         </div>
       </div> -->
       <div class='neighborhood-picker slideup-window'>
-        <h2>Filter by Neighborhood</h2>
+        <h2>Filter by Venue</h2>
         <ul class='neighborhood-list'>
-          <li data-id='6'>Downtown</li>
-          <li data-id='8'>West Asheville</li>
         </ul>
         <div class='cancel'>Cancel</div>
       </div>
@@ -85,11 +93,19 @@
     </form> -->
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
     <script>
-      // var socket = io();
-       var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
+      var socket = io();
+       // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
 //        socket.emit('chat message',"nextpage");
+      $(".up-page").click(function(){
+          socket.emit('page-up', 'page-up');
+      });
+
+      $(".down-page").click(function(){
+          socket.emit('page-down', 'page-down');
+      });
 
       $(".next-page").click(function(){
           socket.emit('page-next', 'page-next');
@@ -107,11 +123,7 @@
         $(".neighborhood-picker").slideDown('fast');
       });
 
-      $(".cancel, .neighborhood-list li").click(function(){
-        socket.emit('neighborhood select', $(this).attr('data-id'));
 
-        $(".neighborhood-picker").slideUp('fast');
-      });
 
       $('form').submit(function(){
         socket.emit('chat message', $('#m').val());
@@ -132,7 +144,33 @@
       });
 
 
+
+
+    function render_venue_list(venue_data){
+
+      for(index in venue_data){
+        venue = venue_data[index];
+        key =  'venue-'+venue.nid;
+
+        venue_html = "<li class='venue-item' data-id='" + venue.nid + "'>" + venue.image + venue.node_title + "</li>";
+        $(".neighborhood-list").append(venue_html);
+      }
+
+            $(".venue-item").on('click', function(){
+        console.log('neighborhood-list click');
+        socket.emit('neighborhood select', $(this).attr('data-id'));
+
+        $(".neighborhood-picker").slideUp('fast');
+      });
+  }
+
+
+
+
     </script>
+
+        <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=render_venue_list"></script>
+
   </body>
 </html>
 

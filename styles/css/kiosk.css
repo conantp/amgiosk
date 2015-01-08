@@ -103,3 +103,20 @@ h2, h3, h4{
 	width: 100%;
 	background: white;
 }
+
+#venue-show-block-slidr{
+	background: white;
+}
+.venue-show-item{
+	width: 20%;
+	display: inline-block;
+	float: left;
+	padding: 20px;
+	margin: 20px;
+}
+
+
+.venue-show-item img{
+	max-width: 200px;
+	height: 200px;
+}

@@ -104,10 +104,10 @@ h2{
 	padding: 20px;
 	display: none;
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+
 	background: rgba(0,0,0,0.9);
 }
 
@@ -118,15 +118,22 @@ h2{
 	border-bottom: 1px solid white;
 	padding: 10px;
 	cursor: pointer;
+	min-height: 80px;
+}
+
+.neighborhood-picker img{
+	max-width: 100px;
+	height: 50px;
+	float: left;
 }
 
 .neighborhood-picker li:hover{
-	background: #9b59b6;
-}
+/*	background: #9b59b6;
+*/}
 
 .cancel{
 	background: #e74c3c;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	width: 100%;

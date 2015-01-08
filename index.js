@@ -61,6 +61,17 @@ io.on('connection', function(socket){
 		console.log('page-previous: ' + msg);
 	    io.emit('page-previous', msg);
 	  });
+
+
+	socket.on('page-up', function(msg){
+		console.log('page-up: ' + msg);
+	    io.emit('page-up', msg);
+	  });
+
+	socket.on('page-down', function(msg){
+		console.log('page-down: ' + msg);
+	    io.emit('page-down', msg);
+	  });
 });
 
 http.listen( (process.env.PORT || 3000), function(){
