@@ -1,15 +1,45 @@
 
 body{
 	background: rgba(0,0,0,0.8);
-	font-family: "Open Sans";
-	font-size: 2em;
-	line-height: 1em;
+	font-family: "Helvetica Neue", "Open Sans", Helvetica;
+	/*line-height: 1em;*/
+}
+
+.venue-block, .show-item{
+	font-size: 2em;	
+	/*line-height: 1.5em;*/
 }
 
 .wrapper{
 	width: 1080px;
 	height: 1920px;
 	margin:auto;
+	background:white;
+	position: relative;
+}
+
+.center{
+	text-align: center;
+}
+
+h1.logo{
+	position:absolute;
+	left: 10px;
+	top: 0px;
+	z-index: 100;
+	text-align: center;
+	display:block;
+	margin: 0px;
+	background: white;
+	border-radius: 0px 0px 10px 10px;
+	width: 25%;
+	text-align: center;
+	left: 35%;
+}
+
+h1.logo img{
+	/*max-width: 80px;*/
+	max-width: 100%;
 }
 
 h2{
@@ -17,10 +47,11 @@ h2{
 }
 
 h2, h3, h4{
-	font-weight:lighter;
+	font-weight:400;
 }
 
 .kiosk-slide-container{
+	z-index: 0;
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
@@ -36,35 +67,41 @@ h2, h3, h4{
 }
 
 .artist-slide-caption{
-	color: white;
+/*	color: white;
 	position: absolute;
 	bottom: 0px;
 	text-align:center;
-	width: 100%;
+	width: 100%;*/
 }
 
-.venue-item{
-/*	position: relative;
-*/	
+.venue-item h2 span{
+	font-size: .4em;
+	clear:both;
+	display:block;
+	line-height: .5em;
+}
+
+.venue-item h2, .venue-item span, .show-item h2, .show-item h4{
+	font-weight: lighter;
 }
 
 
-.venue-item h2{
-		text-align: center;
-		line-height: 1.2em;
-		background: rgba(0,0,0,0.8);
-		color: white;
-			color: white;
-	position: absolute;
-	bottom: 150px;
+.venue-item h2, .show-item h2{
+	text-align: center;
+	line-height: 1.2em;
+	color: white;
+	color: white;
 	text-align:center;
-	width: 100%;
-	padding: 20px;
+	margin-top: 230px;
+	margin-bottom: 10px;
+}
 
-/*
-	position: absolute;
-	bottom: 0;
-	color: white;*/
+.country-name{
+	display: none;
+}
+
+.venue-item .adr{
+	font-size: .7em;
 }
 
 .venue-item img{
@@ -74,18 +111,21 @@ h2, h3, h4{
 */
 }
 
-.venue-item > div{
+.slide-content-wrapper{
 	color: white;
 	position: absolute;
-	bottom: 50px;
+	/*bottom: 50px;*/
 	text-align:center;
+	top:0px;
 	width: 100%;
-		background: rgba(0,0,0,0.8);
+	height: 100%;
+	/*width: 100%;*/
+		background: rgba(0,0,0,0.5);
 }
 
 .venue-item{
 		position:relative;
-	height: 400px;
+	/*height: 400px;*/
 }
 
 .show-item img{
@@ -93,9 +133,9 @@ h2, h3, h4{
 }
 
 .show-item h2{
-	line-height: 1.2em;
+/*	line-height: 1.2em;
 	background: rgba(0,0,0,0.8);
-	padding: 40px;
+	padding: 40px;*/
 }
 
 .next, .show-next{
@@ -104,19 +144,92 @@ h2, h3, h4{
 	background: white;
 }
 
+/*VENUE SHOW GRID*/
+
 #venue-show-block-slidr{
 	background: white;
 }
 .venue-show-item{
-	width: 20%;
+	width: 33.3%;
 	display: inline-block;
 	float: left;
+	margin-bottom: 20px;
+	/*padding: 20px;*/
+	/*margin: 20px;*/
+}
+
+.venue-show-item h2{
+	margin: 0px;
+	font-size: 1.6em;
+}
+
+.date-display-single{
+	font-size: .9em;
+	padding-bottom: 10px;
+	color: #363636;
+}
+
+.venue-show-item * {
+	clear:both;
+	display:block;
+}
+
+.venue-show-item > div{
 	padding: 20px;
-	margin: 20px;
+	/*max-height: 350px;*/
+	height: 270px;
+	overflow:hidden;
 }
 
 
 .venue-show-item img{
-	max-width: 200px;
+	max-width: 100%;
+	height: auto;
+	min-height: 400px;
+}
+
+/*Action buttons*/
+
+.action-buttons{
+	background: black;
+	color: white;
+	clear:both;
+	overflow:hidden;	
+}
+
+.action-buttons > div{
+	float:left;
+	width: 50%;
+	display:inline-block;
+	text-align: center;
+	padding: 30px 0px;
+}
+
+.action-buttons > div.action-left div{
+	float:right;
+	padding-right: 20px;
+}
+
+.action-buttons > div.action-right div{
+	float:left;
+	padding-left: 20px;
+}
+
+.action-buttons > div i{
+	/*margin:auto;*/
+	clear: both;
+	display:block;
+	width: 200px;
 	height: 200px;
+	font-size: 200px;
+	border: 20px solid white;
+	padding: 50px;
+	border-radius: 1000px;
+
+}
+
+.action-buttons > div span{
+	margin-bottom: 20px;
+	display:block;
+
 }
