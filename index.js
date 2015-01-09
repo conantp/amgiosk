@@ -77,6 +77,23 @@ io.on('connection', function(socket){
 		console.log('featured show: ' + msg);
 	    io.emit('featured show', msg);
 	  });
+
+	socket.on('active slide', function(msg){
+		console.log('active slide: ' + msg);
+	    io.emit('active slide', msg);
+	  });
+
+socket.on('venue show next', function(msg){
+		console.log('venue show next ' + msg);
+	    io.emit('venue show next', msg);
+	  });
+
+socket.on('venue show previous', function(msg){
+		console.log('venue show previous: ' + msg);
+	    io.emit('venue show previous', msg);
+	  });
+
+	
 });
 
 http.listen( (process.env.PORT || 3000), function(){

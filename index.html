@@ -10,43 +10,56 @@
   </head>
   <body>
     <h1>
-      <img src='http://www.ashevillemusicguide.com/sites/default/files/NEW-LOGO_1.png' />
-      <span>
-        Kiosk Remote
-      </span>
+      <img src='/img/logo.png' />
     </h1>
     <div class='controls-one'>
     <div class='controls'>
-      <h2 class='current-date'>Current Date</h2>
       <div class='date-pager'>
+        <div>
+          <span class='venue-show-page-previous'>
+                                    <i class="fa fa-home"></i>
+
+          <i class="fa fa-arrow-circle-left"></i>
+          Venue Show Back
+        </span>
+          <span class='neighborhood-select-button'>
+              <i class="fa fa-home"></i>
+              Venue
+          </span>
+                  <span class='venue-show-page-next'>
+          Venue Show Next
+                        <i class="fa fa-home"></i>
+
+          <i class="fa fa-arrow-circle-right"></i>
+        </span>
+        </div>
+        <div>
+          <span class='up-page'>
+            Up
+            <i class="fa fa-arrow-circle-up"></i>
+          </span>
+        </div>
         <span class='previous-page'>
           <i class="fa fa-arrow-circle-left"></i>
           Back
         </span>
-        <span class='home-page'>
+<!--         <span class='home-page'>
           <i class="fa fa-home"></i>
           Today
-        </span>
+        </span> -->
         <span class='next-page'>
           Next
           <i class="fa fa-arrow-circle-right"></i>
         </span>
       </div>
       <div>
-        <span class='up-page'>
-          Up
-          <i class="fa fa-arrow-circle-up"></i>
-        </span>
-                <span class='down-page'>
+        <span class='down-page'>
           Down
           <i class="fa fa-arrow-circle-down"></i>
         </span>
       </div>
       <div>
-        <span class='neighborhood-select-button'>
-            <i class="fa fa-home"></i>
-            Venue
-        </span>
+
 <!--           <span class='filter-select-button'>
             <i class="fa fa-arrow-circle-down"></i>
             Filter
@@ -63,6 +76,34 @@
         <h2>Content Window</h2>
         <div id='remote-content-window'>
 
+        </div>
+        <div class="action-buttons show-action-buttons" style='display:none'>
+          <div class="action-left">
+            <div>
+              <span>tickets</span>
+              <i class="fa fa-ticket"></i>
+            </div>
+          </div>
+          <div class="action-right">
+            <div>
+              <span>listen</span>
+              <i class="fa fa-music"></i>
+            </div>
+          </div>
+        </div>
+        <div class="action-buttons venue-action-buttons" style='display:none'>
+          <div class="action-left">
+            <div>
+              <span>tickets</span>
+              <i class="fa fa-ticket"></i>
+            </div>
+          </div>
+          <div class="action-right">
+            <div>
+              <span>something</span>
+              <i class="fa fa-home"></i>
+            </div>
+          </div>
         </div>
       </div>
       <!-- <div class='controls calendar-filter'>
@@ -130,6 +171,13 @@
       });
 
 
+      $(".venue-show-page-next").click(function(){
+          socket.emit('venue show next', 'venue show next');
+      });
+
+      $(".venue-show-page-previous").click(function(){
+          socket.emit('venue show previous', 'venue show previous');
+      });
 
       $('form').submit(function(){
         socket.emit('chat message', $('#m').val());
@@ -154,6 +202,26 @@
       socket.on('featured show', function(msg){
         // $('#remote-content-window').append($('<li>').text(msg));
          $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
+         $(".show-action-buttons").slideDown('fast');
+      });
+
+      socket.on('venue detail', function(msg){
+        // $('#remote-content-window').append($('<li>').text(msg));
+         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
+         $(".show-action-buttons").slideDown('fast');
+      });
+
+      socket.on('active slide', function(msg){
+        active_slide = msg;
+        // $('#remote-content-window').append($('<li>').text(msg));
+        $(".action-buttons").slideUp('fast');
+        if(active_slide == 'show'){
+           $(".venue-action-buttons").slideDown('fast');
+
+        }
+        else if(active_slide == 'venue'){
+         $(".show-action-buttons").slideDown('fast');          
+        }
       });
 
 

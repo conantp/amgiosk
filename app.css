@@ -26,10 +26,10 @@ h1 span{
 }
 
 h1 img{
-	height: 150px;
 	margin: 0 auto;
 	display: inline-block;
 	width: auto;
+	max-width: 100%;
 	text-align: center;
 
 }
@@ -163,4 +163,11 @@ h2{
 
 .search-window h2{
 	margin-bottom: 20px;
+}
+
+#remote-content-window img{
+	width: 100px;
+	height: auto;
+	float: left;
+	background: white;
 }

@@ -154,18 +154,15 @@ function showPageNext(){
   setTimeout( date_block.slide('left'), 100);
   setTimeout( venue_block.slide('right'), 300);
 
-    show_block_index++;
+  show_block_index++;
 
   if(show_block_index >= show_key_array.length){
-    show_block_index = 0;
+    show_block_index = 1;
   }
 
   active_show_id = show_key_array[show_block_index];
-  console.log(active_show_id);
   active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
-  console.log(active_show_html);
   socket.emit('featured show', $(active_show_html).html() );
-  console.log('emitted');
 }
 
 function showPagePrevious(){
@@ -173,12 +170,34 @@ function showPagePrevious(){
 
   setTimeout( date_block.slide('right'), 100);
   setTimeout( venue_block.slide('left'), 300);
+
+  show_block_index--;
+
+  if(show_block_index < 0){
+    show_block_index = show_key_array.length-2;
+  }
+
+  active_show_id = show_key_array[show_block_index];
+  active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
+  socket.emit('featured show', $(active_show_html).html() );
+
+}
+
+
+function venueShowPageNext(){
+  venue_show_block.slide('right');
+}
+
+
+function venueShowPagePrevious(){
+  venue_show_block.slide('right');
 }
 
 function venuePagePrevious(){
   venue_block2.slide('left');
 
   setTimeout( venue_show_block.slide('right'), 300);
+
 }
 
 function venuePageNext(){
@@ -192,10 +211,14 @@ function setActiveSlide(){
   console.log(test_value);
   if( test_value > 100){
       active_slide = "show";
+
   }
   else{
     active_slide = "venue";
+
   }
+  socket.emit('active slide',active_slide);
+  console.log('active slide message');
 }
 
 function handleNext(){
@@ -270,6 +293,12 @@ var socket = io.connect();
 var kiosk = {};
 
 kiosk.id = 1;
+  
+  
+  socket.on('page-next', function(msg){
+      console.log("Message received: "+ msg);
+      handleNext();
+    });
 
     socket.on('page-previous', function(msg){
       console.log("Message received: "+ msg);
@@ -281,15 +310,18 @@ kiosk.id = 1;
       handleNext();
     });
 
-      socket.on('page-up', function(msg){
+    socket.on('page-up', function(msg){
       console.log("Message received: "+ msg);
       main_slide_controller.slide('left');
+
+      setActiveSlide();
     });
 
 
     socket.on('page-down', function(msg){
       console.log("Message received: "+ msg);
             main_slide_controller.slide('right');
+      setActiveSlide();
 
     });
 
@@ -298,6 +330,18 @@ kiosk.id = 1;
             venue_block.slide('venue-'+msg);
             venue_block2.slide('venue-'+msg);
 
+            venue_show_block.slide('venue-show-page-'+msg+"-0");
+
+    });
+
+    socket.on('venue show next', function(msg){
+      console.log("Message received: "+ msg);
+      venueShowPageNext();
+    });
+
+    socket.on('venue show previous', function(msg){
+      console.log("Message received: "+ msg);
+      venueShowPagePrevious();
     });
 
     // startKioskLoop();
@@ -313,30 +357,68 @@ function amgiosk_load_venue_show_json(input){
 
   
 
+  venue_show_array = {};
 
-  venue_show_image_array = [];
+  current_page = 0;
+
   for(index in venue_show_data){
     venue_show = venue_show_data[index];
-    key =  'venue-show-'+venue.nid;
+current_page = 0;
+
+
+    date_string = venue_show.date; 
+
+    var yr1   = parseInt(date_string.substring(0,4));
+    var mon1  = parseInt(date_string.substring(5,7));
+    var dt1   = parseInt(date_string.substring(8,10));
+    var date1 = new Date(yr1, mon1-1, dt1);
+
+    console.log(date1);
+
+    formatted_date_string = date1.toDateString();
+
+
     revised_title = venue_show.node_title.substring(0, 20);
 
-    if(index > 8){
-      break;
-    }
+    // if(index > 8){
+    //   break;
+    // }
 
     if(venue_show.node_title.length > 24){
       revised_title = revised_title + "...";
     }
 
-    venue_show_html = "<div class='venue-show-item' data-slidr='"+ key + "'><div>" + "<h2>" + revised_title + "</h2>" + venue_show.date + venue_show.image + "</div></div>";
-    $("#venue-show-block-slidr").append(venue_show_html);
+    venue_show.revised_title = revised_title;
+    venue_show.formatted_date_string = formatted_date_string;
+    venue_show.month = date1.getMonth();
+    venue_show.year = date1.getYear();
 
-    venue_show_image_array.push("" + key);
+
+    if(typeof venue_show_array[venue_show.venue] == 'undefined'){
+      venue_show_array[venue_show.venue] = [];
+    }
+
+    
+    if(typeof venue_show_array[venue_show.venue][current_page] == 'undefined'){
+      venue_show_array[venue_show.venue][current_page] = [];
+    }
+
+    while(venue_show_array[venue_show.venue][current_page].length > 8){
+      current_page++;
+
+      if(typeof venue_show_array[venue_show.venue][current_page] == 'undefined'){
+        venue_show_array[venue_show.venue][current_page] = [];
+      }
+    }
+
+    venue_show_array[venue_show.venue][current_page].push(venue_show);
   }
 
-  venue_show_image_array.push(venue_show_image_array[0]);
+  active_venue_id = 7311;
 
-     venue_show_block = slidr.create('venue-show-block-slidr', {
+  venue_show_image_array = setupVenueShows();
+
+ venue_show_block = slidr.create('venue-show-block-slidr', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
     // before: function(e) { console.log('out: ' + e.out.slidr); },
     breadcrumbs: false,
@@ -351,8 +433,50 @@ function amgiosk_load_venue_show_json(input){
     touch: true,
     transition: 'cube'
   });
-    venue_block.add('h', venue_image_array );
-    venue_block.start();
+    venue_show_block.add('h', venue_show_image_array );
+    venue_show_block.start();
 
+}
+
+function setupVenueShows(){
+  $("#venue-show-block-slidr").html("");
+  venue_show_image_array = [];
+
+  for(active_venue_id in venue_show_array){
+
+    active_venue_shows = venue_show_array[active_venue_id];
+
+
+    for(page_index in active_venue_shows){
+      active_venue_show_page = active_venue_shows[page_index];
+
+      page_key =  'venue-show-page-'+active_venue_id+"-"+page_index;
+      venue_show_image_array.push("" + page_key);
+
+      show_page_html = "<div class='venue-show-page-item' data-slidr='"+ page_key + "'>";
+
+      show_page_html += "<h2>";
+      show_page_html += active_venue_show_page[0].formatted_date_string;
+      show_page_html += " - ";
+      show_page_html += active_venue_show_page[active_venue_show_page.length-1].formatted_date_string;
+      show_page_html += "</h2>";
+
+      for(index in active_venue_show_page){
+        show = active_venue_show_page[index];
+        if(show.venue == null){
+          continue;
+        }
+        key =  'venue-show-'+show.nid;
+
+        show_page_html += "<div class='venue-show-item' data-slidr='"+ key + "'><div>" + "<h2>" + show.revised_title + "</h2>" + show.formatted_date_string + show.image + "</div></div>";
+
+      }
+      show_page_html += "</div>"
+      $("#venue-show-block-slidr").append(show_page_html);
+
+    }
+  }
+  venue_show_image_array.push(venue_show_image_array[0]);
+  return venue_show_image_array;
 }
 
