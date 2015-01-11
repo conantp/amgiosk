@@ -93,6 +93,11 @@ socket.on('venue show previous', function(msg){
 	    io.emit('venue show previous', msg);
 	  });
 
+socket.on('venue detail', function(msg){
+		console.log('venue detail: ' + msg);
+	    io.emit('venue detail', msg);
+	  });
+
 	
 });
 

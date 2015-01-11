@@ -205,6 +205,14 @@
          $(".show-action-buttons").slideDown('fast');
       });
 
+       socket.on('venue detail', function(msg){
+        // $('#remote-content-window').append($('<li>').text(msg));
+         $('#remote-content-window').html("<div class='venue-detail-item'>" + msg + "</div>");
+          $(".show-action-buttons").slideUp('fast');
+
+         $(".venue-action-buttons").slideDown('fast');
+      });
+
       socket.on('venue detail', function(msg){
         // $('#remote-content-window').append($('<li>').text(msg));
          $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");

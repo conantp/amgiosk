@@ -8,6 +8,7 @@ var venue_show_block;
 var active_slide;
 
 var show_block_index;
+var active_venue_index;
 
 function amgiosk_load_venue_image_json(input){
   venue_data = input;
@@ -50,10 +51,15 @@ function amgiosk_load_venue_image_json(input){
     before: function(e) { 
       console.log( e); 
 
-      venue_id = e.in.slidr.split('-')[1];
-      console.log(venue_id);
-                  venue_show_block.slide('venue-show-page-'+venue_id+"-0");
+      active_venue_index = e.in.slidr.split('-')[1];
+      console.log(active_venue_index);
+      venue_show_block.slide('venue-show-page-'+active_venue_index+"-0");
 
+      active_venue_selector = 'venue-' + active_venue_index;
+    active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
+    active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
+
+    socket.emit('venue detail', active_html);
 
     },
     breadcrumbs: false,
@@ -194,6 +200,10 @@ function showPagePrevious(){
 
 function venueShowPageNext(){
   venue_show_block.slide('right');
+
+  // active_show_id = show_key_array[show_block_index];
+  // active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
+  // socket.emit('featured show', $(active_show_html).html() );
 }
 
 
