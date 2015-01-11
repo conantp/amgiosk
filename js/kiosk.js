@@ -47,7 +47,15 @@ function amgiosk_load_venue_image_json(input){
 
      venue_block2 = slidr.create('venue-block-slidr-2', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
-    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    before: function(e) { 
+      console.log( e); 
+
+      venue_id = e.in.slidr.split('-')[1];
+      console.log(venue_id);
+                  venue_show_block.slide('venue-show-page-'+venue_id+"-0");
+
+
+    },
     breadcrumbs: false,
     controls: 'corner',
     direction: 'horizontal',
@@ -190,20 +198,15 @@ function venueShowPageNext(){
 
 
 function venueShowPagePrevious(){
-  venue_show_block.slide('right');
+  venue_show_block.slide('left');
 }
 
 function venuePagePrevious(){
   venue_block2.slide('left');
-
-  setTimeout( venue_show_block.slide('right'), 300);
-
 }
 
 function venuePageNext(){
   venue_block2.slide('right');
-
-  setTimeout( venue_show_block.slide('left'), 300);
 }
 
 function setActiveSlide(){
@@ -255,7 +258,7 @@ $(".next").click(function(){
 $(".show-next").click(function(){
   venue_block2.slide('right');
 
-  setTimeout( moveVenueMiddle, 300);
+  // setTimeout( moveVenueMiddle, 300);
 });
 
 
@@ -305,10 +308,6 @@ kiosk.id = 1;
       handlePrevious();
     });
 
-    socket.on('page-next', function(msg){
-      console.log("Message received: "+ msg);
-      handleNext();
-    });
 
     socket.on('page-up', function(msg){
       console.log("Message received: "+ msg);
@@ -330,7 +329,7 @@ kiosk.id = 1;
             venue_block.slide('venue-'+msg);
             venue_block2.slide('venue-'+msg);
 
-            venue_show_block.slide('venue-show-page-'+msg+"-0");
+            // venue_show_block.slide('venue-show-page-'+msg+"-0");
 
     });
 
@@ -373,7 +372,7 @@ current_page = 0;
     var dt1   = parseInt(date_string.substring(8,10));
     var date1 = new Date(yr1, mon1-1, dt1);
 
-    console.log(date1);
+    // console.log(date1);
 
     formatted_date_string = date1.toDateString();
 
