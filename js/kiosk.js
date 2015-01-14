@@ -9,11 +9,27 @@ var active_slide;
 
 var show_block_index;
 var active_venue_index;
+var active_mode = 'show';
+
+function handleNewSlide(e){
+        console.log( e); 
+
+      active_venue_index = e.in.slidr.split('-')[1];
+      console.log(active_venue_index);
+      venue_show_block.slide('venue-show-page-'+active_venue_index+"-0");
+
+      active_venue_selector = 'venue-' + active_venue_index;
+    active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
+    active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
+
+    socket.emit('venue detail', active_html);
+}
 
 function amgiosk_load_venue_image_json(input){
   venue_data = input;
 
   venue_image_array = [];
+  active_venue_index = venue_data[0].nid;
   for(index in venue_data){
     venue = venue_data[index];
     key =  'venue-'+venue.nid;
@@ -60,6 +76,7 @@ function amgiosk_load_venue_image_json(input){
     active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
 
     socket.emit('venue detail', active_html);
+    active_slide = active_html;
 
     },
     breadcrumbs: false,
@@ -220,31 +237,31 @@ function venuePageNext(){
 }
 
 function setActiveSlide(){
-  test_value = $(".kiosk-main-slide-show").attr('style').indexOf('visibility: hidden;');
-  console.log(test_value);
-  if( test_value > 100){
-      active_slide = "show";
+  // test_value = $(".kiosk-main-slide-show").attr('style').indexOf('visibility: hidden;');
+  // console.log(test_value);
+  // if( test_value > 100){
+  //     active_slide = "show";
+  // }
+  // else{
+  //   active_slide = "venue";
 
-  }
-  else{
-    active_slide = "venue";
+  // }
 
-  }
-  socket.emit('active slide',active_slide);
+  socket.emit('active slide',active_mode);
   console.log('active slide message');
 }
 
 function handleNext(){
   setActiveSlide();
 
-  console.log(active_slide);
+  console.log(active_mode);
   // active_slide = $(".show-item:visible");
 
-  if(active_slide == "show"){
+  if(active_mode == "show"){
     showPageNext();
   }
   
-  if(active_slide == "venue"){
+  if(active_mode == "venue"){
     venuePageNext();
   }
 }
@@ -252,11 +269,11 @@ function handleNext(){
 function handlePrevious(){
   setActiveSlide();
 
-  if(active_slide == "show"){
+  if(active_mode == "show"){
     showPagePrevious();
   }
 
-  if(active_slide == "venue"){
+  if(active_mode == "venue"){
     venuePagePrevious();
   }
 }
@@ -288,7 +305,7 @@ main_slide_controller = slidr.create('kiosk-slide-container', {
     transition: 'linear'
   });
 
-main_key_array = ['main-slide-venue', 'main-slide-show', 'main-slide-venue', 'main-slide-show'];
+main_key_array = ['main-slide-show', 'main-slide-venue', 'main-slide-social',  'main-slide-video','main-slide-show'];
     main_slide_controller.add('h', main_key_array );
     main_slide_controller.start();
 
@@ -308,8 +325,11 @@ var kiosk = {};
 kiosk.id = 1;
 
    socket.on('get current slide', function(msg){
+
       console.log("Message received: "+ msg);
       setActiveSlide();
+
+      sendContentWindow();
     });
 
   
@@ -359,11 +379,64 @@ kiosk.id = 1;
       venueShowPagePrevious();
     });
 
+    socket.on('change module', function(msg){
+      console.log('change module: ' + msg);
+
+
+      active_mode = msg;
+
+      sendContentWindow();
+      setActiveSlide();
+      main_slide_controller.slide('main-slide-'+msg);
+
+    });
+
     // startKioskLoop();
 
         // socket.emit('chat message',"nextpage");
 
+function sendContentWindow(){
+  if(active_mode == 'show'){
+    sendShowHTML();
+  }
+  else if(active_mode == 'venue'){
+    console.log('hey');
+    sendVenueHTML();
+  }
+  else if(active_mode == 'social'){
+    sendSocialHTML();
+  }
+  else if(active_mode == 'video'){
+    sendVideoHTML();
+  }
+}
 
+function sendVenueHTML(){
+    active_venue_selector = 'venue-' + active_venue_index;
+    active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
+    active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
+
+    socket.emit('venue detail', active_html);
+
+}
+
+function sendSocialHTML(){
+    active_html = $(".social-slide-content").html();
+
+    socket.emit('venue detail', active_html);
+}
+
+function sendVideoHTML(){
+    active_html = $(".social-slide-content").html();
+
+    socket.emit('venue detail', active_html);
+}
+
+function sendShowHTML(){
+        active_show_id = show_key_array[show_block_index];
+        active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
+        socket.emit('featured show', $(active_show_html).html() );
+}
 
 function amgiosk_load_venue_show_json(input){
   venue_show_data = input;

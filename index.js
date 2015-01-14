@@ -103,6 +103,12 @@ socket.on('get current slide', function(msg){
 	    io.emit('get current slide', msg);
 	  });
 
+	socket.on('change module', function(msg){
+		console.log('change module: ' + msg);
+	    io.emit('change module', msg);
+	  });
+
+
 
 
 	

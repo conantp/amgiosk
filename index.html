@@ -15,25 +15,25 @@
     <div class='top-menu-container'>
       <ul class='top-menu'>
         <li>
-          <span class='up-page'>
+          <span class='module-button module-shows' data-amgiosk-module='show'>
             <i class="fa fa-music"></i>
              Shows
           </span>
         </li>
         <li>
-          <span class='up-page'>
+          <span class='module-button module-venues' data-amgiosk-module='venue'>
             <i class="fa fa-home"></i>
              Venues
           </span>
         </li>
         <li>
-          <span class='up-page'>
+          <span class='module-button module-social' data-amgiosk-module='social'>
             <i class="fa fa-facebook"></i>
             Social
           </span>
         </li>
         <li>
-          <span class='up-page'>
+          <span class='module-button module-video' data-amgiosk-module='video'>
             <i class="fa fa-youtube"></i>
             Video
           </span>
@@ -41,10 +41,10 @@
       </ul>
     </div>
     <div class='control-groups'>
-      <div class='control-group control-group-shows'>
+      <div class='control-group control-group-show'>
         Show Controls
       </div>
-      <div class='control-group control-group-venues'>
+      <div class='control-group control-group-venue'>
         Veneu Controls
           <div class='controls'>
             <div>
@@ -69,6 +69,12 @@
             </span>
           </div>
         </div>
+      </div>
+      <div class='control-group control-group-social'>
+        Social Controls
+      </div>
+      <div class='control-group control-group-video'>
+        Video Controls
       </div>
     </div>
     <div class='controls-one'>
@@ -173,14 +179,12 @@
        // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
        socket.emit('get current slide',"please");
-      $(".up-page").click(function(){
-          socket.emit('page-up', 'page-up');
+      $(".module-button").click(function(){
+          console.log('change module: ' + $(this).attr('data-amgiosk-module'));
+          socket.emit('change module', $(this).attr('data-amgiosk-module'));
       });
 
-      $(".down-page").click(function(){
-          socket.emit('page-down', 'page-down');
-      });
-
+    
       $(".next-page").click(function(){
           socket.emit('page-next', 'page-next');
       });
@@ -273,14 +277,8 @@
 
 
     function processActiveMode(){
-      if(active_mode == 'show'){
-        $(".control-group").slideUp('fast');
-        $(".control-group-shows").slideDown('fast');
-      }
-      else if(active_mode == 'venue'){
-         $(".control-group").slideUp('fast');
-         $(".control-group-venues").slideDown('fast');
-      }
+      $(".control-group").slideUp('fast');
+      $(".control-group-"+active_mode).slideDown('fast');
     }
 
     function render_venue_list(venue_data){
