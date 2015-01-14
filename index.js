@@ -98,6 +98,13 @@ socket.on('venue detail', function(msg){
 	    io.emit('venue detail', msg);
 	  });
 
+socket.on('get current slide', function(msg){
+		console.log('request for current slide: ' + msg);
+	    io.emit('get current slide', msg);
+	  });
+
+
+
 	
 });
 

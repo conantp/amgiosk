@@ -306,6 +306,12 @@ var socket = io.connect();
 var kiosk = {};
 
 kiosk.id = 1;
+
+   socket.on('get current slide', function(msg){
+      console.log("Message received: "+ msg);
+      setActiveSlide();
+    });
+
   
   
   socket.on('page-next', function(msg){

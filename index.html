@@ -12,33 +12,70 @@
     <h1>
       <img src='/img/logo.png' />
     </h1>
+    <div class='top-menu-container'>
+      <ul class='top-menu'>
+        <li>
+          <span class='up-page'>
+            <i class="fa fa-music"></i>
+             Shows
+          </span>
+        </li>
+        <li>
+          <span class='up-page'>
+            <i class="fa fa-home"></i>
+             Venues
+          </span>
+        </li>
+        <li>
+          <span class='up-page'>
+            <i class="fa fa-facebook"></i>
+            Social
+          </span>
+        </li>
+        <li>
+          <span class='up-page'>
+            <i class="fa fa-youtube"></i>
+            Video
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class='control-groups'>
+      <div class='control-group control-group-shows'>
+        Show Controls
+      </div>
+      <div class='control-group control-group-venues'>
+        Veneu Controls
+          <div class='controls'>
+            <div>
+                            <span class='neighborhood-select-button'>
+                  <i class="fa fa-home"></i>
+                  Venue
+              </span>
+              <br />
+              <h4>Show List</h4>
+             <span class='venue-show-page-previous'>
+                                        <i class="fa fa-home"></i>
+
+                <i class="fa fa-arrow-circle-left"></i>
+                Back
+              </span>
+
+                      <span class='venue-show-page-next'>
+              Next 
+                            <i class="fa fa-home"></i>
+
+              <i class="fa fa-arrow-circle-right"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class='controls-one'>
     <div class='controls'>
       <div class='date-pager'>
-        <div>
-          <span class='venue-show-page-previous'>
-                                    <i class="fa fa-home"></i>
 
-          <i class="fa fa-arrow-circle-left"></i>
-          Venue Show Back
-        </span>
-          <span class='neighborhood-select-button'>
-              <i class="fa fa-home"></i>
-              Venue
-          </span>
-                  <span class='venue-show-page-next'>
-          Venue Show Next
-                        <i class="fa fa-home"></i>
-
-          <i class="fa fa-arrow-circle-right"></i>
-        </span>
-        </div>
-        <div>
-          <span class='up-page'>
-            Up
-            <i class="fa fa-arrow-circle-up"></i>
-          </span>
-        </div>
+        
         <span class='previous-page'>
           <i class="fa fa-arrow-circle-left"></i>
           Back
@@ -52,45 +89,33 @@
           <i class="fa fa-arrow-circle-right"></i>
         </span>
       </div>
-      <div>
-        <span class='down-page'>
-          Down
-          <i class="fa fa-arrow-circle-down"></i>
-        </span>
-      </div>
-      <div>
-
-<!--           <span class='filter-select-button'>
-            <i class="fa fa-arrow-circle-down"></i>
-            Filter
-        </span>
-        <span class='search-button'>
-            <i class="fa fa-search"></i>
-            Search
-        </span> -->
-      </div>
-      <div>
-        <input type='color' value=''>
-      </div>
+      
       <div id='remote-content-window-container'>
         <h2>Content Window</h2>
+        <div class='control-groups'>
+          <div class='control-group control-group-shows'>
+            Show Controls
+                  <div class="action-buttons show-action-buttons" style='display:none'>
+                    <div class="action-left">
+                      <div>
+                        <span>tickets</span>
+                        <i class="fa fa-ticket"></i>
+                      </div>
+                    </div>
+                    <div class="action-right">
+                      <div>
+                        <span>listen</span>
+                        <i class="fa fa-music"></i>
+                      </div>
+                    </div>
+                  </div>
+
+          </div>
+        </div>
         <div id='remote-content-window'>
 
         </div>
-        <div class="action-buttons show-action-buttons" style='display:none'>
-          <div class="action-left">
-            <div>
-              <span>tickets</span>
-              <i class="fa fa-ticket"></i>
-            </div>
-          </div>
-          <div class="action-right">
-            <div>
-              <span>listen</span>
-              <i class="fa fa-music"></i>
-            </div>
-          </div>
-        </div>
+
         <div class="action-buttons venue-action-buttons" style='display:none'>
           <div class="action-left">
             <div>
@@ -142,10 +167,12 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
     <script>
+    var active_mode = false;
+    var mode_changed = false;
       var socket = io();
        // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
-//        socket.emit('chat message',"nextpage");
+       socket.emit('get current slide',"please");
       $(".up-page").click(function(){
           socket.emit('page-up', 'page-up');
       });
@@ -220,20 +247,41 @@
       });
 
       socket.on('active slide', function(msg){
-        active_slide = msg;
-        // $('#remote-content-window').append($('<li>').text(msg));
-        $(".action-buttons").slideUp('fast');
-        if(active_slide == 'show'){
-           $(".venue-action-buttons").slideDown('fast');
+        console.log('active slide received: ' + msg);
+        // active_slide = msg;
+        // // $('#remote-content-window').append($('<li>').text(msg));
+        // $(".action-buttons").slideUp('fast');
+        // if(active_slide == 'show'){
+        //    $(".venue-action-buttons").slideDown('fast');
 
+        // }
+        // else if(active_slide == 'venue'){
+        //  $(".show-action-buttons").slideDown('fast');          
+        // }
+
+        if(active_mode != msg){
+          mode_changed = true;
         }
-        else if(active_slide == 'venue'){
-         $(".show-action-buttons").slideDown('fast');          
+
+        active_mode = msg;
+
+        if(mode_changed){
+          processActiveMode();
+          mode_changed = false;
         }
       });
 
 
-
+    function processActiveMode(){
+      if(active_mode == 'show'){
+        $(".control-group").slideUp('fast');
+        $(".control-group-shows").slideDown('fast');
+      }
+      else if(active_mode == 'venue'){
+         $(".control-group").slideUp('fast');
+         $(".control-group-venues").slideDown('fast');
+      }
+    }
 
     function render_venue_list(venue_data){
 
