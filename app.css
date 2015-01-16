@@ -7,13 +7,25 @@
   #messages li:nth-child(odd) { background: #eee; }
 */
 
+body{
+	font-size: 12px;
+}
+
+body, span, p, i, b, a{
+	font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-size: 16px;
+}
+
 h1{
 	text-align: center;
 	padding: 0 10px;
 	background: rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.2);
-	margin: 0 10px 0 10px;
-	border-radius: 0 0 3px 3px;
+	/*margin: 0 10px 0 10px;*/
+	/*border-radius: 0 0 3px 3px;*/
 }
 h1 span{
 	display: none;
@@ -37,9 +49,25 @@ h1 img{
   width: 100%;
 
   text-align: center;
+}
 
-  margin: 10px auto;
-  padding: 10px;
+.control-group-one span{
+	width: 100%;
+}
+
+.control-group-two span{
+	width: 50%;
+	margin: 0px;
+	display:inline-block;
+	float:left;
+}
+
+.control-group-two span:first-child{
+	background: #1F5C99;	
+}
+
+.control-group-two span:last-child{
+	background: #4C7DAD;	
 }
 
 body{
@@ -60,17 +88,16 @@ h2{
 }
 
 .controls span{
-  font-size: 1.0em;
-  border: 1px solid rgba(0,0,0,0.8);
+  font-size: 12px;
   overflow: hidden;
-  padding: 20px 1%;
   display: inline-block;
   cursor: pointer;
-  width: 30%;
-  border-radius: 5px;
-  margin: 10px 1%;
+  padding: 10px 0px;
   background: rgba(0,0,0,0.3);
-  min-height: 44px;
+}
+
+.controls span{
+	/*width: 100%;*/
 }
 
 .controls span:hover{
@@ -90,8 +117,8 @@ h2{
 }
 
 .neighborhood-select-button{
-	border: 1px solid white;
-	border-radius: 5px;
+	/*border: 1px solid white;*/
+	/*border-radius: 5px;*/
 	padding: 10px;
 	cursor: pointer;
 }
@@ -111,20 +138,36 @@ h2{
 	background: rgba(0,0,0,0.9);
 }
 
+.neighborhood-picker{
+	position:fixed;
+	height:100%;
+}
+
 .neighborhood-picker ul{
 	list-style: none;
+	height: 100%;
+	overflow:scroll;
+	padding-bottom: 50px;
 }
 .neighborhood-picker li{
-	border-bottom: 1px solid white;
+	/* border-bottom: 1px solid white; */
 	padding: 10px;
 	cursor: pointer;
 	min-height: 80px;
+	font-size: 12px;
+	float: left;
+	min-height: 113px;
+	line-height: 14px;
+	width: 33%;
 }
 
 .neighborhood-picker img{
-	max-width: 100px;
-	height: 50px;
-	float: left;
+	width: 100%;
+	height: auto;
+	clear: both;
+	margin-bottom: 6px;
+	/* float: left; */
+	display: block;
 }
 
 .neighborhood-picker li:hover{
@@ -178,20 +221,33 @@ h2{
 
 
 .top-menu{
-	padding: 20px 0;
+	/*padding: 20px 0;*/
+	background:black;
+	overflow:hidden;
 }
 
 .top-menu > li{
 	display: inline-block;
-	margin: 0 10px;
-	width: 20%;
+	/*margin: 0 10px;*/
+	width: 25%; 
+	float:left;
+	cursor:pointer;
+}
+
+.top-menu > li:active{
+	background: #666;
+}
+
+.top-menu > li:last-child span{
+	border-right: none;
 }
 
 .top-menu span{
 	display: block;
-	background: black;
+	/*background: black;*/
 	margin: 0;
-	min-height: 44px;
+	/*min-height: 44px;*/
 	padding: 10px;
+	border-right: 1px solid #f2f2f2;
 
 }

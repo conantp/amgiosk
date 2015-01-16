@@ -44,78 +44,81 @@
       <div class='control-group control-group-show'>
         Show Controls
       </div>
-      <div class='control-group control-group-venue'>
-        Veneu Controls
-          <div class='controls'>
-            <div>
-                            <span class='neighborhood-select-button'>
-                  <i class="fa fa-home"></i>
-                  Venue
-              </span>
-              <br />
-              <h4>Show List</h4>
-             <span class='venue-show-page-previous'>
-                                        <i class="fa fa-home"></i>
-
-                <i class="fa fa-arrow-circle-left"></i>
-                Back
-              </span>
-
-                      <span class='venue-show-page-next'>
-              Next 
-                            <i class="fa fa-home"></i>
-
-              <i class="fa fa-arrow-circle-right"></i>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class='control-group control-group-social'>
-        Social Controls
-      </div>
-      <div class='control-group control-group-video'>
-        Video Controls
-      </div>
-    </div>
-    <div class='controls-one'>
-    <div class='controls'>
-      <div class='date-pager'>
-
-        
+      <div class='date-pager control-group-two'>
         <span class='previous-page'>
           <i class="fa fa-arrow-circle-left"></i>
           Back
         </span>
-<!--         <span class='home-page'>
-          <i class="fa fa-home"></i>
-          Today
-        </span> -->
         <span class='next-page'>
           Next
           <i class="fa fa-arrow-circle-right"></i>
         </span>
+      </div>      
+      <div class='control-group control-group-venue'>
+          <div class='controls'>
+            <div class="control-group-one">
+               <span class='neighborhood-select-button'>
+                  <i class="fa fa-list"></i>
+                  Venue List
+                </span>
+            </div>                
+            <br />
+            <h4>Switch Venue</h4>
+            <div class="control-group-two">
+             <span class='venue-show-page-previous'>
+                <i class="fa fa-home"></i>
+                <i class="fa fa-arrow-circle-left"></i>
+                  Back
+              </span>
+              <span class='venue-show-page-next'>
+                Next 
+                <i class="fa fa-home"></i>
+                <i class="fa fa-arrow-circle-right"></i>
+              </span>
+            </div>
+            <div class='date-pager control-group-two'>
+              <span class='previous-page'>
+                <i class="fa fa-arrow-circle-left"></i>
+                Back
+              </span>
+              <span class='next-page'>
+                Next
+                <i class="fa fa-arrow-circle-right"></i>
+              </span>
+            </div>            
+          </div>
+        </div>
       </div>
-      
+      <div class="controls-group-social double-wide control-group-two">
+        <div class='control-group control-group-social half-width'>
+          Social Controls
+        </div>
+        <div class='control-group control-group-video'>
+          Video Controls
+        </div>
+      </div>
+    </div>
+    <div class='controls-one'>
+    <div class='controls'>      
       <div id='remote-content-window-container'>
         <h2>Content Window</h2>
         <div class='control-groups'>
           <div class='control-group control-group-shows'>
             Show Controls
-                  <div class="action-buttons show-action-buttons" style='display:none'>
-                    <div class="action-left">
-                      <div>
-                        <span>tickets</span>
-                        <i class="fa fa-ticket"></i>
-                      </div>
-                    </div>
-                    <div class="action-right">
-                      <div>
-                        <span>listen</span>
-                        <i class="fa fa-music"></i>
-                      </div>
-                    </div>
-                  </div>
-
+            <div class="action-buttons show-action-buttons control-group-2" style='display:none'>
+              <div class="action-left">
+                <div>
+                  <span>tickets</span>
+                  <i class="fa fa-ticket"></i>
+                </div>
+              </div>
+              <div class="action-right">
+                <div>
+                  <span>listen</span>
+                  <i class="fa fa-music"></i>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div id='remote-content-window'>
@@ -145,6 +148,8 @@
           </span>
         </div>
       </div> -->
+
+      <!-- FILTER VENUE -->
       <div class='neighborhood-picker slideup-window'>
         <h2>Filter by Venue</h2>
         <ul class='neighborhood-list'>
@@ -199,6 +204,7 @@
 
       $(".neighborhood-select-button").click(function(){
         $(".neighborhood-picker").slideDown('fast');
+        $("body").addClass('overlay-visible');
       });
 
 
@@ -291,12 +297,20 @@
         $(".neighborhood-list").append(venue_html);
       }
 
-            $(".venue-item").on('click', function(){
-        console.log('neighborhood-list click');
-        socket.emit('neighborhood select', $(this).attr('data-id'));
+        $(".venue-item").on('click', function(){
+          console.log('neighborhood-list click');
+          socket.emit('neighborhood select', $(this).attr('data-id'));
 
-        $(".neighborhood-picker").slideUp('fast');
+          $(".neighborhood-picker").slideUp('fast');
+          $("body").removeClass('overlay-visible');
       });
+
+        $(".cancel").on('click', function(){
+          $(".neighborhood-picker").slideUp('fast');
+          $("body").removeClass('overlay-visible');
+        });
+
+
   }
 
 
