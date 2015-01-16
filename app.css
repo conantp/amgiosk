@@ -208,10 +208,14 @@ h2{
 	margin-bottom: 20px;
 }
 
+#remote-content-window{
+	background: rgba(0,0,0,0.8);
+}
+
 #remote-content-window img{
 	width: 100px;
 	height: auto;
-	float: left;
+	/*float: left;*/
 	background: white;
 }
 
@@ -250,4 +254,36 @@ h2{
 	padding: 10px;
 	border-right: 1px solid #f2f2f2;
 
+}
+
+.venue-show-item{
+	clear: both;
+	background: rgba(0,0,0,0.8);
+	padding: 10px;
+	font-size: 0.8em;
+	display: block;
+	height: 100px;
+}
+
+.venue-show-item > div{
+	text-align: left;
+	padding: 20px;
+
+}
+.venue-show-item h2{
+	float: left;
+	width: 35%;
+}
+
+.venue-show-item img{
+	display: block;
+	float: right;
+	margin-top: -20px;
+}
+
+.slide-content-wrapper h2 span{
+	display: none;
+}
+.slide-content-wrapper h2{
+	font-size: 1.3em;
 }

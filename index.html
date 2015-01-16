@@ -1,325 +1,150 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <title>AMGiosk Remote</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/app.css" rel="stylesheet">
-
-
-  </head>
-  <body>
+</head>
+<body>
     <h1>
-      <img src='/img/logo.png' />
+        <img src='/img/logo.png' />
     </h1>
     <div class='top-menu-container'>
-      <ul class='top-menu'>
-        <li>
-          <span class='module-button module-shows' data-amgiosk-module='show'>
-            <i class="fa fa-music"></i>
-             Shows
-          </span>
-        </li>
-        <li>
-          <span class='module-button module-venues' data-amgiosk-module='venue'>
-            <i class="fa fa-home"></i>
-             Venues
-          </span>
-        </li>
-        <li>
-          <span class='module-button module-social' data-amgiosk-module='social'>
-            <i class="fa fa-facebook"></i>
-            Social
-          </span>
-        </li>
-        <li>
-          <span class='module-button module-video' data-amgiosk-module='video'>
-            <i class="fa fa-youtube"></i>
-            Video
-          </span>
-        </li>
-      </ul>
+        <ul class='top-menu'>
+            <li>
+                <span class='module-button module-shows' data-amgiosk-module='show'>
+                    <i class="fa fa-music"></i>
+                    Shows
+                </span>
+            </li>
+            <li>
+                <span class='module-button module-venues' data-amgiosk-module='venue'>
+                    <i class="fa fa-home"></i>
+                    Venues
+                </span>
+            </li>
+            <li>
+                <span class='module-button module-social' data-amgiosk-module='social'>
+                    <i class="fa fa-facebook"></i>
+                    Social
+                </span>
+            </li>
+            <li>
+                <span class='module-button module-video' data-amgiosk-module='video'>
+                    <i class="fa fa-youtube"></i>
+                    Video
+                </span>
+            </li>
+        </ul>
     </div>
     <div class='control-groups'>
-      <div class='control-group control-group-show'>
-        Show Controls
-      </div>
-      <div class='date-pager control-group-two'>
-        <span class='previous-page'>
-          <i class="fa fa-arrow-circle-left"></i>
-          Back
-        </span>
-        <span class='next-page'>
-          Next
-          <i class="fa fa-arrow-circle-right"></i>
-        </span>
-      </div>      
-      <div class='control-group control-group-venue'>
-          <div class='controls'>
-            <div class="control-group-one">
-               <span class='neighborhood-select-button'>
-                  <i class="fa fa-list"></i>
-                  Venue List
-                </span>
-            </div>                
-            <br />
-            <h4>Switch Venue</h4>
-            <div class="control-group-two">
-             <span class='venue-show-page-previous'>
-                <i class="fa fa-home"></i>
-                <i class="fa fa-arrow-circle-left"></i>
-                  Back
-              </span>
-              <span class='venue-show-page-next'>
-                Next 
-                <i class="fa fa-home"></i>
-                <i class="fa fa-arrow-circle-right"></i>
-              </span>
-            </div>
-            <div class='date-pager control-group-two'>
-              <span class='previous-page'>
+        <div class='control-group control-group-show'>
+            Show Controls
+        </div>
+        <div class='date-pager control-group-two'>
+            <span class='previous-page'>
                 <i class="fa fa-arrow-circle-left"></i>
                 Back
-              </span>
-              <span class='next-page'>
+            </span>
+            <span class='next-page'>
                 Next
                 <i class="fa fa-arrow-circle-right"></i>
-              </span>
-            </div>            
-          </div>
+            </span>
+        </div>      
+        <div class='control-group control-group-venue'>
+            <div class='controls'>
+                <div class="control-group-one">
+                    <span class='neighborhood-select-button'>
+                        <i class="fa fa-list"></i>
+                        Venue List
+                    </span>
+                </div>                
+                <h4>Switch Venue</h4>
+                <div class='date-pager control-group-two'>
+                    <span class='previous-page'>
+                        <i class="fa fa-arrow-circle-left"></i>
+                        Back
+                    </span>
+                    <span class='next-page'>
+                        Next
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </span>
+                </div> 
+                <h4>Change Date</h4>
+                <div class="control-group-two">
+                    <span class='venue-show-page-previous'>
+                        <i class="fa fa-home"></i>
+                        <i class="fa fa-arrow-circle-left"></i>
+                        Back
+                    </span>
+                    <span class='venue-show-page-next'>
+                        Next 
+                        <i class="fa fa-home"></i>
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </span>
+                </div>
+           
+            </div>
         </div>
-      </div>
-      <div class="controls-group-social double-wide control-group-two">
-        <div class='control-group control-group-social half-width'>
-          Social Controls
+        <div class="control-group control-group-social control-group-one">
+            Social Controls
         </div>
-        <div class='control-group control-group-video'>
-          Video Controls
+        <div class='control-group control-group-video control-group-one'>
+            Video Controls
         </div>
-      </div>
     </div>
     <div class='controls-one'>
-    <div class='controls'>      
-      <div id='remote-content-window-container'>
-        <h2>Content Window</h2>
-        <div class='control-groups'>
-          <div class='control-group control-group-shows'>
-            Show Controls
-            <div class="action-buttons show-action-buttons control-group-2" style='display:none'>
-              <div class="action-left">
-                <div>
-                  <span>tickets</span>
-                  <i class="fa fa-ticket"></i>
+        <div class='controls'>      
+            <div id='remote-content-window-container'>
+                <div class='control-groups'>
+                    <div class='control-group control-group-show'>
+                        Show Sub Controls
+                        <div class="control-group-two" >
+                            <span class='previous-page'>
+                                <i class="fa fa-music"></i>
+                                Tickets
+                            </span>
+                            <span class='previous-page'>
+                                <i class="fa fa-music"></i>
+                                Listen
+                            </span>
+                        </div>
+                    </div>
+                    <div class='control-group control-group-venue'>
+                        Venue Sub Controls
+                    </div>
                 </div>
-              </div>
-              <div class="action-right">
-                <div>
-                  <span>listen</span>
-                  <i class="fa fa-music"></i>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-        <div id='remote-content-window'>
-
-        </div>
-
-        <div class="action-buttons venue-action-buttons" style='display:none'>
-          <div class="action-left">
-            <div>
-              <span>tickets</span>
-              <i class="fa fa-ticket"></i>
-            </div>
-          </div>
-          <div class="action-right">
-            <div>
-              <span>something</span>
-              <i class="fa fa-home"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- <div class='controls calendar-filter'>
-        <h3>Filters</h3>
-        <div>
-          <span class="xpress" data-category-filter="smart_bets" title="Filter by shows featured in Mountain Xpress"><img src="http://www.ashevillemusicguide.com/sites/all/themes/amg_omega/images/xpress-icon.png">
-            Mountain Xpress
-          </span>
-        </div>
-      </div> -->
-
-      <!-- FILTER VENUE -->
-      <div class='neighborhood-picker slideup-window'>
+    </div>
+    <h2>Content Window</h2>
+    <div id='remote-content-window'>
+    </div>
+    <!-- FILTER VENUE -->
+    <div class='neighborhood-picker slideup-window'>
         <h2>Filter by Venue</h2>
         <ul class='neighborhood-list'>
         </ul>
-        <div class='cancel'>Cancel</div>
-      </div>
-
-
-      <div class='search-window slideup-window'>
-        <h2>Search for Shows + Bands</h2>
-        <div>
-                      <i class="fa fa-search"></i>
-            <input type='search' value='' placeholder='Search' />
-          </div>
-
-      </div>
-
+        <div class='cancel'>
+            Cancel
+        </div>
     </div>
 
 
-<!--     <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form> -->
+    <div class='search-window slideup-window'>
+        <h2>Search for Shows + Bands</h2>
+        <div>
+            <i class="fa fa-search"></i>
+            <input type='search' value='' placeholder='Search' />
+        </div>
+    </div>
+
+
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
-    <script>
-    var active_mode = false;
-    var mode_changed = false;
-      var socket = io();
-       // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
-
-       socket.emit('get current slide',"please");
-      $(".module-button").click(function(){
-          console.log('change module: ' + $(this).attr('data-amgiosk-module'));
-          socket.emit('change module', $(this).attr('data-amgiosk-module'));
-      });
-
-    
-      $(".next-page").click(function(){
-          socket.emit('page-next', 'page-next');
-      });
-
-      $(".home-page").click(function(){
-          socket.emit('page-today', 'page-today');
-      });
-
-      $(".previous-page").click(function(){
-          socket.emit('page-previous', 'page-previous');
-      });
-
-      $(".neighborhood-select-button").click(function(){
-        $(".neighborhood-picker").slideDown('fast');
-        $("body").addClass('overlay-visible');
-      });
-
-
-      $(".venue-show-page-next").click(function(){
-          socket.emit('venue show next', 'venue show next');
-      });
-
-      $(".venue-show-page-previous").click(function(){
-          socket.emit('venue show previous', 'venue show previous');
-      });
-
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-
-            $('input[type="color"]').change(function(){
-//                alert('color' + $(this).val() );
-              $('body').css('background-color', $(this).val() );
-            });
-
-            $(".search-button").click(function(){
-        $(".search-window").slideDown('fast');
-      });
-
-      // Real logic
-
-      socket.on('featured show', function(msg){
-        // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
-         $(".show-action-buttons").slideDown('fast');
-      });
-
-       socket.on('venue detail', function(msg){
-        // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='venue-detail-item'>" + msg + "</div>");
-          $(".show-action-buttons").slideUp('fast');
-
-         $(".venue-action-buttons").slideDown('fast');
-      });
-
-      socket.on('venue detail', function(msg){
-        // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
-         $(".show-action-buttons").slideDown('fast');
-      });
-
-      socket.on('active slide', function(msg){
-        console.log('active slide received: ' + msg);
-        // active_slide = msg;
-        // // $('#remote-content-window').append($('<li>').text(msg));
-        // $(".action-buttons").slideUp('fast');
-        // if(active_slide == 'show'){
-        //    $(".venue-action-buttons").slideDown('fast');
-
-        // }
-        // else if(active_slide == 'venue'){
-        //  $(".show-action-buttons").slideDown('fast');          
-        // }
-
-        if(active_mode != msg){
-          mode_changed = true;
-        }
-
-        active_mode = msg;
-
-        if(mode_changed){
-          processActiveMode();
-          mode_changed = false;
-        }
-      });
-
-
-    function processActiveMode(){
-      $(".control-group").slideUp('fast');
-      $(".control-group-"+active_mode).slideDown('fast');
-    }
-
-    function render_venue_list(venue_data){
-
-      for(index in venue_data){
-        venue = venue_data[index];
-        key =  'venue-'+venue.nid;
-
-        venue_html = "<li class='venue-item' data-id='" + venue.nid + "'>" + venue.image + venue.node_title + "</li>";
-        $(".neighborhood-list").append(venue_html);
-      }
-
-        $(".venue-item").on('click', function(){
-          console.log('neighborhood-list click');
-          socket.emit('neighborhood select', $(this).attr('data-id'));
-
-          $(".neighborhood-picker").slideUp('fast');
-          $("body").removeClass('overlay-visible');
-      });
-
-        $(".cancel").on('click', function(){
-          $(".neighborhood-picker").slideUp('fast');
-          $("body").removeClass('overlay-visible');
-        });
-
-
-  }
-
-
-
-
-    </script>
-
-        <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=render_venue_list"></script>
-
-  </body>
+    <script src="/js/remote.js"></script>
+    <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=render_venue_list"></script>
+</body>
 </html>
 

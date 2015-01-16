@@ -11,6 +11,8 @@ var show_block_index;
 var active_venue_index;
 var active_mode = 'show';
 
+var active_venue_show_page_index = 0;
+
 function handleNewSlide(e){
         console.log( e); 
 
@@ -217,7 +219,7 @@ function showPagePrevious(){
 
 function venueShowPageNext(){
   venue_show_block.slide('right');
-
+  sendVenueHTML();
   // active_show_id = show_key_array[show_block_index];
   // active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
   // socket.emit('featured show', $(active_show_html).html() );
@@ -225,7 +227,10 @@ function venueShowPageNext(){
 
 
 function venueShowPagePrevious(){
+
   venue_show_block.slide('left');
+  sendVenueHTML();
+
 }
 
 function venuePagePrevious(){
@@ -414,7 +419,7 @@ function sendContentWindow(){
 function sendVenueHTML(){
     active_venue_selector = 'venue-' + active_venue_index;
     active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
-    active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
+    active_html += $(".venue-show-page-item[data-slidr='" + active_venue_show_page_index + "']").html();
 
     socket.emit('venue detail', active_html);
 
@@ -508,7 +513,11 @@ current_page = 0;
 
  venue_show_block = slidr.create('venue-show-block-slidr', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
-    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    before: function(e) { 
+      console.log(e);
+      active_venue_show_page_index = e.in.slidr;
+
+       },
     breadcrumbs: false,
     controls: 'corner',
     direction: 'horizontal',
