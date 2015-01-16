@@ -41,17 +41,17 @@
     <div class='control-groups'>
         <div class='control-group control-group-show'>
             Show Controls
+            <div class='date-pager control-group-two'>
+                <span class='previous-page'>
+                    <i class="fa fa-arrow-circle-left"></i>
+                    Back
+                </span>
+                <span class='next-page'>
+                    Next
+                    <i class="fa fa-arrow-circle-right"></i>
+                </span>
+            </div>             
         </div>
-        <div class='date-pager control-group-two'>
-            <span class='previous-page'>
-                <i class="fa fa-arrow-circle-left"></i>
-                Back
-            </span>
-            <span class='next-page'>
-                Next
-                <i class="fa fa-arrow-circle-right"></i>
-            </span>
-        </div>      
         <div class='control-group control-group-venue'>
             <div class='controls'>
                 <div class="control-group-one">
@@ -59,9 +59,21 @@
                         <i class="fa fa-list"></i>
                         Venue List
                     </span>
-                </div>                
-                <h4>Switch Venue</h4>
-                <div class='date-pager control-group-two'>
+                </div> 
+
+                <div class="nav-slider-container">
+                    <div id='venue-nav-slidr' class="nav-slider">
+                        <div data-slidr='one'>
+                            <h4>One Stop</h4>
+                            <img width="100" src="/img/odditorium.jpg"/>                            
+                        </div>
+                        <div data-slidr='two'>
+                            <h4>One Stop</h4>
+                            <img width="100" src="/img/odditorium.jpg"/>
+                        </div>
+                    </div>
+                </div>  
+                <div class='venue-pager control-group-two'>
                     <span class='previous-page'>
                         <i class="fa fa-arrow-circle-left"></i>
                         Back
@@ -71,7 +83,13 @@
                         <i class="fa fa-arrow-circle-right"></i>
                     </span>
                 </div> 
-                <h4>Change Date</h4>
+              </div>               
+                <div class="nav-slider-container">
+                    <div id='date-nav-slidr' class="nav-slider">
+                        <div data-slidr='one'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
+                        <div data-slidr='two'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
+                    </div>
+                </div>                
                 <div class="control-group-two">
                     <span class='venue-show-page-previous'>
                         <i class="fa fa-home"></i>
@@ -140,11 +158,13 @@
         </div>
     </div>
 
-
+    <script src="/js/slidr/slidr.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/js/remote.js"></script>
     <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=render_venue_list"></script>
+
+
 </body>
 </html>
 

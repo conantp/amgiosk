@@ -6,6 +6,9 @@
   #messages li { padding: 5px 10px; }
   #messages li:nth-child(odd) { background: #eee; }
 */
+body.overlay-visible{
+	position:fixed;
+}
 
 body{
 	font-size: 12px;
@@ -51,6 +54,18 @@ h1 img{
   text-align: center;
 }
 
+.control-group-one,
+.control-group-two{
+	clear:both;
+	display:block;
+	overflow:hidden;
+}
+
+.control-group-one span,
+.control-group-two span{
+	padding: 15px 0px;
+}
+
 .control-group-one span{
 	width: 100%;
 }
@@ -92,7 +107,7 @@ h2{
   overflow: hidden;
   display: inline-block;
   cursor: pointer;
-  padding: 10px 0px;
+  /*padding: 10px 0px;*/
   background: rgba(0,0,0,0.3);
 }
 
@@ -139,6 +154,7 @@ h2{
 }
 
 .neighborhood-picker{
+	z-index: 100;
 	position:fixed;
 	height:100%;
 }
@@ -250,7 +266,7 @@ h2{
 	display: block;
 	/*background: black;*/
 	margin: 0;
-	/*min-height: 44px;*/
+	min-height: 44px;
 	padding: 10px;
 	border-right: 1px solid #f2f2f2;
 
@@ -286,4 +302,29 @@ h2{
 }
 .slide-content-wrapper h2{
 	font-size: 1.3em;
+}
+
+/*NAV SLIDERS*/
+.nav-slider-container{
+	display:inline-block;
+	clear:both;
+	text-align: center;
+	min-width: 320px;
+	margin-top: 20px;
+}
+
+.nav-slider-container aside{
+	display:none;
+}
+
+.nav-slider-container > div{
+	/*width: 320px;*/
+	overflow:hidden;
+	margin:auto;
+}
+
+.nav-slider-container h4{
+	display:block;
+	text-align: center;
+	min-width: 320px;
 }

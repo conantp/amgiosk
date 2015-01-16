@@ -132,3 +132,56 @@
 
 
   }
+
+  // SLIDR FOR DATES
+   date_nav_slider = slidr.create('date-nav-slidr', {
+    // after: function(e) { console.log('in: ' + e.in.slidr); },
+    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    breadcrumbs: false,
+    controls: 'none',
+    direction: 'horizontal',
+    fade: false,
+    keyboard: true,
+    overflow: true,
+    pause: false,
+    theme: '#222',
+    timing: { 'cube': '0.2s ease-in-ease-out' },
+    touch: false,
+    transition: 'linear'
+  });
+    date_nav_slider.start();
+
+  // SLIDR FOR VENUE NAV
+   venue_nav_slider = slidr.create('venue-nav-slidr', {
+    // after: function(e) { console.log('in: ' + e.in.slidr); },
+    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    breadcrumbs: false,
+    controls: 'none',
+    direction: 'horizontal',
+    fade: false,
+    keyboard: true,
+    overflow: true,
+    pause: false,
+    theme: '#222',
+    timing: { 'cube': '0.2s ease-in-ease-out' },
+    touch: false,
+    transition: 'linear'
+  });
+    venue_nav_slider.start();   
+
+    $('.venue-show-page-next, .venue-pager .next-page').on('click', function(){
+       date_nav_slider.slide('right'); 
+     });
+
+    $('.venue-show-page-previous, .venue-pager .previous-page').on('click', function(){
+       date_nav_slider.slide('left'); 
+     });  
+
+     $('.venue-pager .next-page').on('click', function(){
+       venue_nav_slider.slide('right'); 
+     });
+
+     $('.venue-pager .previous-page').on('click', function(){
+       venue_nav_slider.slide('left'); 
+     });       
+
