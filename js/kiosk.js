@@ -9,9 +9,12 @@ var active_slide;
 
 var show_block_index;
 var active_venue_index;
-var active_mode = 'show';
+var active_mode = 'venue';
 
-var active_venue_show_page_index = 0;
+var venue_array = {}; 
+var active_venue_show_page_index;
+
+var active_venue_show_page_number = 0;
 
 function handleNewSlide(e){
         console.log( e); 
@@ -35,6 +38,15 @@ function amgiosk_load_venue_image_json(input){
   for(index in venue_data){
     venue = venue_data[index];
     key =  'venue-'+venue.nid;
+
+
+    if(typeof venue_show_array[venue.nid] == "undefined"){
+      continue;
+    }
+
+    venue.shows = venue_show_array[venue.nid];
+
+    venue_array[venue.nid] = venue;
 
     venue_html = "<div class='venue-item' data-slidr='"+ key + "'>" + venue.image + "<div class='slide-content-wrapper'><h2><span>Upcoming Shows</span>" + venue.node_title + "</h2>" + venue.address + "</div></div>";
     $("#venue-block-slidr").append(venue_html);
@@ -69,17 +81,11 @@ function amgiosk_load_venue_image_json(input){
     before: function(e) { 
       console.log( e); 
 
-      active_venue_index = e.in.slidr.split('-')[1];
-      console.log(active_venue_index);
-      venue_show_block.slide('venue-show-page-'+active_venue_index+"-0");
+        active_venue_index = e.in.slidr.split('-')[1];
+        console.log(active_venue_index);
+        venue_show_block.slide('venue-show-page-'+active_venue_index+"-0");
 
-      active_venue_selector = 'venue-' + active_venue_index;
-    active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
-    active_html += $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-0']").html();
-
-    socket.emit('venue detail', active_html);
-    active_slide = active_html;
-
+        sendVenueHTML();
     },
     breadcrumbs: false,
     controls: 'corner',
@@ -218,7 +224,18 @@ function showPagePrevious(){
 
 
 function venueShowPageNext(){
-  venue_show_block.slide('right');
+  active_venue_show_page_number++;
+  // Check for need to loop
+  console.log(active_venue_id);
+  console.log(active_venue_show_page_number);
+  console.log($(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']"));
+
+
+  if(! $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").length){
+    active_venue_show_page_number = 0;
+  }
+
+  venue_show_block.slide("venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number);
   sendVenueHTML();
   // active_show_id = show_key_array[show_block_index];
   // active_show_html = $(".show-item[data-slidr='" + active_show_id + "']");
@@ -310,7 +327,8 @@ main_slide_controller = slidr.create('kiosk-slide-container', {
     transition: 'linear'
   });
 
-main_key_array = ['main-slide-show', 'main-slide-venue', 'main-slide-social',  'main-slide-video','main-slide-show'];
+main_key_array = [ 'main-slide-venue', 'main-slide-show', 'main-slide-social',  'main-slide-video'];
+main_key_array.push(main_key_array[0]);
     main_slide_controller.add('h', main_key_array );
     main_slide_controller.start();
 
@@ -418,10 +436,17 @@ function sendContentWindow(){
 
 function sendVenueHTML(){
     active_venue_selector = 'venue-' + active_venue_index;
-    active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
-    active_html += $(".venue-show-page-item[data-slidr='" + active_venue_show_page_index + "']").html();
+    // active_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
+    // active_html += $(".venue-show-page-item[data-slidr='" + active_venue_show_page_index + "']").html();
 
-    socket.emit('venue detail', active_html);
+      data = {};
+      data.venue_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
+      data.shows_html = $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").html();
+
+      data.venue = venue_array[active_venue_index];
+
+
+    socket.emit('venue detail', data);
 
 }
 
@@ -454,9 +479,14 @@ function amgiosk_load_venue_show_json(input){
 
   current_page = 0;
 
+    active_venue_id = venue_show_data[1].venue;
+
+
   for(index in venue_show_data){
     venue_show = venue_show_data[index];
 current_page = 0;
+
+
 
 
     date_string = venue_show.date; 
@@ -507,7 +537,6 @@ current_page = 0;
     venue_show_array[venue_show.venue][current_page].push(venue_show);
   }
 
-  active_venue_id = 7311;
 
   venue_show_image_array = setupVenueShows();
 
@@ -516,6 +545,9 @@ current_page = 0;
     before: function(e) { 
       console.log(e);
       active_venue_show_page_index = e.in.slidr;
+              active_venue_id = e.in.slidr.split('-')[3];
+              active_venue_show_page_number = e.in.slidr.split('-')[4];
+
 
        },
     breadcrumbs: false,
@@ -538,6 +570,8 @@ current_page = 0;
 function setupVenueShows(){
   $("#venue-show-block-slidr").html("");
   venue_show_image_array = [];
+
+  active_venue_show_page_index = 'venue-show-page-'+active_venue_id+"-"+0;
 
   for(active_venue_id in venue_show_array){
 

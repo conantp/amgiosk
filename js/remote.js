@@ -1,6 +1,9 @@
  var active_mode = false;
     var mode_changed = false;
       var socket = io();
+      var venue_nav_visible = 'one';
+      var venue_nav_direction = 'right';
+
        // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
        socket.emit('get current slide',"please");
@@ -63,18 +66,27 @@
       });
 
        socket.on('venue detail', function(msg){
+        console.log(msg);
+
         // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='venue-detail-item'>" + msg + "</div>");
+         $('#remote-content-window').html("<div class='venue-detail-item'>" + msg.shows_html + "</div>");
           $(".show-action-buttons").slideUp('fast');
 
          $(".venue-action-buttons").slideDown('fast');
+
+console.log(msg.venue);
+        // Populate the hidden item
+        pop = "one"
+        if(venue_nav_visible == 'one'){
+          pop = "two";
+        }
+
+        $('.remote-venue-item[data-slidr="'+ pop + '"] img').replaceWith($(msg.venue.image).attr('width', '100').removeAttr('height'));
+         $('.remote-venue-item[data-slidr="'+ pop + '"] h4').html(msg.venue.node_title);
+          venue_nav_slider.slide(venue_nav_direction); 
+
       });
 
-      socket.on('venue detail', function(msg){
-        // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
-         $(".show-action-buttons").slideDown('fast');
-      });
 
       socket.on('active slide', function(msg){
         console.log('active slide received: ' + msg);
@@ -100,6 +112,11 @@
           mode_changed = false;
         }
       });
+
+
+    function processContentWIndow(){
+
+    }
 
 
     function processActiveMode(){
@@ -154,7 +171,12 @@
   // SLIDR FOR VENUE NAV
    venue_nav_slider = slidr.create('venue-nav-slidr', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
-    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    before: function(e) { 
+        console.log('out: ' + e.in.slidr); 
+
+        venue_nav_visible = e.in.slidr;
+
+      },
     breadcrumbs: false,
     controls: 'none',
     direction: 'horizontal',
@@ -167,6 +189,11 @@
     touch: false,
     transition: 'linear'
   });
+
+   venue_nav_array = ['one', 'two', 'one'];
+    venue_nav_slider.add('h', venue_nav_array );
+
+
     venue_nav_slider.start();   
 
     $('.venue-show-page-next, .venue-pager .next-page').on('click', function(){
@@ -177,11 +204,12 @@
        date_nav_slider.slide('left'); 
      });  
 
-     $('.venue-pager .next-page').on('click', function(){
-       venue_nav_slider.slide('right'); 
-     });
-
      $('.venue-pager .previous-page').on('click', function(){
-       venue_nav_slider.slide('left'); 
-     });       
+      venue_nav_direction = 'left';
+     });   
+
+
+     $('.venue-pager .next-page').on('click', function(){
+      venue_nav_direction = 'right';
+     });    
 
