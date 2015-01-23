@@ -552,11 +552,11 @@ function setupVenueShows(){
 
       show_page_html = "<div class='venue-show-page-item' data-slidr='"+ page_key + "'>";
 
-      show_page_html += "<h2>";
+      show_page_html += "<div class='padded-date'><h2><i class='fa fa-calendar'></i>";
       show_page_html += active_venue_show_page[0].formatted_date_string;
       show_page_html += " - ";
       show_page_html += active_venue_show_page[active_venue_show_page.length-1].formatted_date_string;
-      show_page_html += "</h2>";
+      show_page_html += "</h2></div>";
 
       for(index in active_venue_show_page){
         show = active_venue_show_page[index];
@@ -565,7 +565,7 @@ function setupVenueShows(){
         }
         key =  'venue-show-'+show.nid;
 
-        show_page_html += "<div class='venue-show-item' data-slidr='"+ key + "'><div>" + "<h2>" + show.revised_title + "</h2>" + show.formatted_date_string + show.image + "</div></div>";
+        show_page_html += "<div class='venue-show-item' data-slidr='"+ key + "'><div>" + "<div class='show-title'><h2>" + show.revised_title + "<span>" + show.formatted_date_string + "</span>" + "</h2></div>" + show.image + "</div></div>";
 
       }
       show_page_html += "</div>"
