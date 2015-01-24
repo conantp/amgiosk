@@ -15,46 +15,11 @@
 
     
 
-
-      $(".home-page").click(function(){
-          socket.emit('page-today', 'page-today');
-      });
-
-      $(".previous-page").click(function(){
-          socket.emit('page-previous', 'page-previous');
-      });
-
       $(".neighborhood-select-button").click(function(){
         $(".neighborhood-picker").slideDown('fast');
         $("body").addClass('overlay-visible');
       });
 
-
-      $(".venue-show-page-next").click(function(){
-          socket.emit('venue show next', 'venue show next');
-      });
-
-      $(".venue-show-page-previous").click(function(){
-          socket.emit('venue show previous', 'venue show previous');
-      });
-
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-
-            $('input[type="color"]').change(function(){
-//                alert('color' + $(this).val() );
-              $('body').css('background-color', $(this).val() );
-            });
-
-            $(".search-button").click(function(){
-        $(".search-window").slideDown('fast');
-      });
 
       // Real logic
 
@@ -64,18 +29,18 @@
          $(".show-action-buttons").slideDown('fast');
       });
 
-       socket.on('venue detail', function(msg){
-        console.log(msg);
+     socket.on('venue detail', function(msg){
+        // console.log(msg);
 
 
 
         // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='venue-detail-item'>" + msg.shows_html + "</div>");
+       //  $('#remote-content-window').html("<div class='venue-detail-item'>" + msg.shows_html + "</div>");
           $(".show-action-buttons").slideUp('fast');
 
          $(".venue-action-buttons").slideDown('fast');
 
-console.log(msg.venue);
+// console.log(msg.venue);
         // Populate the hidden item
 
 
@@ -84,10 +49,53 @@ console.log(msg.venue);
 
         scope.$apply(function(){
             console.log('scope apply');
-            scope.active_venue = msg.venue;
-            scope.active_show_page = scope.active_venue.shows[scope.active_show_page_number];
+
+            new_venue = false;
+            if(msg.venue.nid != scope.active_venue.nid){
+              scope.active_venue = msg.venue;
+              new_venue = true;
+            }
+
+            new_show_page_number = parseInt(msg.active_venue_show_page_number);
+
+            if(new_venue || scope.active_show_page_number != new_show_page_number){
+              scope.active_show_page_number = new_show_page_number;
+              scope.active_show_page = scope.active_venue.shows[scope.active_show_page_number];
+              
+
+
+              date_string = scope.active_show_page[0].date; 
+
+              var yr1   = parseInt(date_string.substring(0,4));
+              var mon1  = parseInt(date_string.substring(5,7));
+              var dt1   = parseInt(date_string.substring(8,10));
+              var date1 = new Date(yr1, mon1-1, dt1);
+
+              // console.log(date1);
+
+              formatted_date_string = date1.toDateString();
+              scope.activeDateMin = formatted_date_string;
+
+              date_string = scope.active_show_page[scope.active_show_page.length-1].date; 
+
+              var yr1   = parseInt(date_string.substring(0,4));
+              var mon1  = parseInt(date_string.substring(5,7));
+              var dt1   = parseInt(date_string.substring(8,10));
+              var date1 = new Date(yr1, mon1-1, dt1);
+
+              // console.log(date1);
+
+              formatted_date_string = date1.toDateString();
+              scope.activeDateMax = formatted_date_string;
+
+
+            }
+
             scope.venue_nav_visible = venue_nav_visible;
-            scope.showNewVenue();
+            
+            if(new_venue){
+              scope.showNewVenue();
+            }
 
         });
 
@@ -173,18 +181,47 @@ console.log(msg.venue);
      });  
 
     // Temp location for this
-          $(document).on('click', ".next-page", function(){
-            console.log('new next page click');
-            var scope = angular.element($("#amgRemoteAppContainer")).scope();
+          // $(document).on('click', ".next-page", function(){
+          //   console.log('new next page click');
+          //   var scope = angular.element($("#amgRemoteAppContainer")).scope();
 
-            scope.$apply(function(){
-                console.log('scope apply');
-            });
+          //   scope.$apply(function(){
+          //       console.log('scope apply');
+          //   });
 
 
-              socket.emit('page-next', 'page-next');
-          });
+          //     socket.emit('page-next', 'page-next');
+          // });
 
+
+    socket.on('active slide', function(msg){
+        console.log('active slide received: ' + msg);
+
+        var scope = angular.element($("#amgRemoteAppContainer")).scope();
+
+        scope.$apply(function(){
+            console.log('scope apply');
+          scope.setActiveMode(msg);
+
+        });
+
+        // console.log($scope);
+        // active_slide = msg;
+        // // $('#remote-content-window').append($('<li>').text(msg));
+        // $(".action-buttons").slideUp('fast');
+        // if(active_slide == 'show'){
+        //    $(".venue-action-buttons").slideDown('fast');
+
+        // }
+        // else if(active_slide == 'venue'){
+        //  $(".show-action-buttons").slideDown('fast');          
+        // }
+
+        
+        
+
+
+      });
 
 
 $(".cancel").on('click', function(){
@@ -207,11 +244,18 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
 
     $scope.venue_array = temp_array;
 
+    $scope.socket = socket;
+
+    $scope.activeDateMin = '231';
+    $scope.activeDateMax = '456';
+
     $scope.getShowImageSrc = function(showImage){
         return $(showImage).attr('src');
     }
 
     $scope.getClass = function(ind){
+      // console.log('get class');
+
         if( ind === $scope.selectedIndex ){
             return "selected";
         } else{
@@ -232,7 +276,7 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
     }
 
     $scope.showNewVenue = function() {
-        $scope.active_show_page_number = 0;
+        // $scope.active_show_page_number = 0;
 
         pop = "one"
         if(venue_nav_visible == 'one'){
@@ -254,38 +298,83 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
           $("body").removeClass('overlay-visible');
     }
 
-    socket.on('active slide', function(msg){
-        console.log('active slide received: ' + msg);
-        console.log($scope);
-        // active_slide = msg;
-        // // $('#remote-content-window').append($('<li>').text(msg));
-        // $(".action-buttons").slideUp('fast');
-        // if(active_slide == 'show'){
-        //    $(".venue-action-buttons").slideDown('fast');
+    $scope.setActiveMode = function(new_mode){
+      if($scope.active_mode != new_mode){
+        mode_changed = true;
+      }
 
-        // }
-        // else if(active_slide == 'venue'){
-        //  $(".show-action-buttons").slideDown('fast');          
-        // }
+      $scope.active_mode = new_mode;
 
-        if($scope.active_mode != msg){
-          mode_changed = true;
-        }
+      console.log('mode changed');
 
-        $scope.active_mode = msg;
-
-        if(mode_changed){
-                  $(".control-group").slideUp('fast');
-              $(".control-group-"+$scope.active_mode).slideDown('fast');
+      if(mode_changed){
+            //     $(".control-group").slideUp('fast');
+            // $(".control-group-"+$scope.active_mode).slideDown('fast');
 
 
 
-          mode_changed = false;
-        }
-        
+        mode_changed = false;
+      }
+    }
+
+    $scope.processVenueShowPageClick = function(next){
+      if(next){
+        // $scope.active_show_page_number++;
+              socket.emit('venue show next', 'venue show next');
+
+      }
+      else{
+        // $scope.active_show_page_number--;
+          socket.emit('venue show previous', 'venue show previous');
+
+      }
+
+      console.log('Active page number: ' + $scope.active_show_page_number);
 
 
-      });
+    }
+
+    $scope.getVenueShowPageNextClass = function(){
+      // console.log('get next class');
+
+      if(! $scope.active_venue){
+        return "good";
+      }
+
+      // console.log($scope.active_venue.shows);
+      // console.log($scope.active_show_page_number+1);
+      // console.log(typeof $scope.active_venue.shows[$scope.active_show_page_number+1]);
+
+      if(typeof $scope.active_venue.shows[$scope.active_show_page_number+1] != 'undefined'){
+        return "good-1";
+      }
+      else{
+        return "bad";
+      }
+    }
+
+    $scope.getVenueShowPageBackClass = function(){
+      // console.log('get back class');
+
+      if(! $scope.active_venue){
+        return "bad";
+      }
+
+
+      if($scope.active_show_page_number > 0){
+        return "good-1";
+      }
+      else{
+        return "bad";
+      }
+    }
+
+    $scope.sendMessage = function(message){
+      console.log('sending message: ' + message);
+      socket.emit(message, message);
+    }
+
+
 
 }]);
 

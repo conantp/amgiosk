@@ -238,7 +238,7 @@ h2{
 }
 
 .control-group{
-	display: none;
+	/*display: none;*/
 }
 
 
@@ -358,4 +358,9 @@ h2{
 
 .nav-slider-container img{
 	width: 100%;
+}
+
+/* PATRICK TEST */
+.venue-show-page-next.bad, .venue-show-page-previous.bad{
+	background: red !important;
 }

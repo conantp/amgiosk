@@ -232,7 +232,7 @@ function venueShowPageNext(){
 
 
   if(! $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").length){
-    active_venue_show_page_number = 0;
+    active_venue_show_page_number = active_venue_show_page_number-1;
   }
 
   venue_show_block.slide("venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number);
@@ -245,7 +245,20 @@ function venueShowPageNext(){
 
 function venueShowPagePrevious(){
 
-  venue_show_block.slide('left');
+  active_venue_show_page_number--;
+  // Check for need to loop
+  console.log(active_venue_id);
+  console.log(active_venue_show_page_number);
+  console.log($(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']"));
+
+  if(! $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").length){
+    active_venue_show_page_number = 0;
+  }
+
+  venue_show_block.slide("venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number);
+
+
+
   sendVenueHTML();
 
 }
@@ -441,10 +454,10 @@ function sendVenueHTML(){
 
       data = {};
       data.venue_html = $(".venue-item[data-slidr='" + active_venue_selector + "']").html();
-      data.shows_html = $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").html();
+      // data.shows_html = $(".venue-show-page-item[data-slidr='venue-show-page-"+active_venue_index+"-"+active_venue_show_page_number+"']").html();
 
       data.venue = venue_array[active_venue_index];
-
+      data.active_venue_show_page_number = active_venue_show_page_number;
 
     socket.emit('venue detail', data);
 

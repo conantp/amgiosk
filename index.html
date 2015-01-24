@@ -39,20 +39,20 @@
         </ul>
     </div>
     <div class='control-groups'>
-        <div class='control-group control-group-show'>
+        <div ng-show='active_mode == "show"' class='control-group control-group-show'>
             Show Controls
             <div class='date-pager control-group-two'>
-                <span class='previous-page'>
+                <span ng-click="sendMessage('page-previous'); " class='previous-page'>
                     <i class="fa fa-arrow-circle-left"></i>
                     Back
                 </span>
-                <span class='next-page'>
+                <span ng-click="sendMessage('page-next'); " class='next-page'>
                     Next
                     <i class="fa fa-arrow-circle-right"></i>
                 </span>
             </div>             
         </div>
-        <div class='control-group control-group-venue'>
+        <div ng-show='active_mode == "venue"' class='control-group control-group-venue'>
             <div class='controls'>
                 <div class="control-group-one">
                     <span class='neighborhood-select-button'>
@@ -74,11 +74,11 @@
                     </div>
                 </div>  
                 <div class='venue-pager control-group-two'>
-                    <span ng-click="venue_nav_direction = 'left'" class='previous-page'>
+                    <span ng-click="venue_nav_direction = 'left'; sendMessage('page-previous') " class='previous-page'>
                         <i class="fa fa-arrow-circle-left"></i>
                         Back
                     </span>
-                    <span ng-click="venue_nav_direction = 'right'" ng-class="getClass($index)" class='next-page '>
+                    <span ng-click="venue_nav_direction = 'right'; sendMessage('page-next'); " ng-class="getClass($index)" class='next-page '>
                         Next
                         <i class="fa fa-arrow-circle-right"></i>
                     </span>
@@ -91,12 +91,12 @@
                     </div>
                 </div>                
                 <div class="control-group-two">
-                    <span  ng-click="active_show_page_number = active_show_page_number - 1" class='venue-show-page-previous'>
+                    <span  ng-class="getVenueShowPageBackClass()" ng-click="processVenueShowPageClick(false)" class='venue-show-page-previous'>
                         <i class="fa fa-home"></i>
                         <i class="fa fa-arrow-circle-left"></i>
                         Back
                     </span>
-                    <span  ng-click="active_show_page_number = active_show_page_number + 1" class='venue-show-page-next'>
+                    <span  ng-class="getVenueShowPageNextClass()" ng-click="processVenueShowPageClick(true)" class='venue-show-page-next'>
                         Next 
                         <i class="fa fa-home"></i>
                         <i class="fa fa-arrow-circle-right"></i>
@@ -105,10 +105,10 @@
            
             </div>
         </div>
-        <div class="control-group control-group-social control-group-one">
+        <div  ng-show='active_mode == "social"'  class="control-group control-group-social control-group-one">
             Social Controls
         </div>
-        <div class='control-group control-group-video control-group-one'>
+        <div  ng-show='active_mode == "video"'  class='control-group control-group-video control-group-one'>
             Video Controls
         </div>
     </div>
@@ -116,7 +116,7 @@
         <div class='controls'>      
             <div id='remote-content-window-container'>
                 <div class='control-groups'>
-                    <div class='control-group control-group-show'>
+                    <div  ng-show='active_mode == "show"' class='control-group control-group-show'>
                         Show Sub Controls
                         <div class="control-group-two" >
                             <span class='previous-page'>
@@ -129,7 +129,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class='control-group control-group-venue'>
+                    <div  ng-show='active_mode == "venue"' class='control-group control-group-venue'>
                         <!-- Venue Sub Controls -->
                     </div>
                 </div>
@@ -141,10 +141,11 @@
     </div>
 
 
+    <!-- Date Header -->
+    {{ activeDateMin }} - {{ activeDateMax }}
     <ul>
         <!-- ngRepeat: contact in contacts -->
-        <li ng-repeat="show in active_show_page">
-           
+        <li class='venue-show-item' ng-repeat="show in active_show_page">
            {{ show.node_title }} 
            <img ng-src='{{ getShowImageSrc(show.image) }}' />
         </li>
