@@ -13,6 +13,7 @@ var io = require('socket.io')(http);
 app.use('/img',express.static(path.join(__dirname, 'img')));
 app.use('/js',express.static(path.join(__dirname, 'js')));
 app.use('/styles',express.static(path.join(__dirname, 'styles')));
+app.use('/node_modules',express.static(path.join(__dirname, 'node_modules')));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
