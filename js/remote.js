@@ -25,7 +25,7 @@
 
       socket.on('featured show', function(msg){
         // $('#remote-content-window').append($('<li>').text(msg));
-         $('#remote-content-window').html("<div class='show-item'>" + msg + "</div>");
+         $('.show-content-window').html("<div class='show-item'>" + msg + "</div>");
          $(".show-action-buttons").slideDown('fast');
       });
 

@@ -12,6 +12,8 @@ body.overlay-visible{
 
 body{
 	font-size: 12px;
+	max-width: 500px;
+	margin: auto;
 }
 
 body, span, p, i, b, a{

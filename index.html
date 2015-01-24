@@ -52,6 +52,10 @@
                 </span>
             </div>             
         </div>
+        <!-- Show Remote Content Detail -->
+        <div id='remote-content-window' class='show-content-window' ng-show='active_mode == "show"'>
+
+        </div>        
         <div ng-show='active_mode == "venue"' class='control-group control-group-venue'>
             <div class='controls'>
                 <div class="control-group-one">
@@ -136,20 +140,18 @@
             </div>
         </div>
     </div>
-    <!-- <h2>Content Window</h2> -->
-    <div id='remote-content-window'>
+
+    <div ng-show='active_mode == "venue"'>
+        <!-- Date Header -->
+        {{ activeDateMin }} - {{ activeDateMax }}
+        <ul>
+            <!-- ngRepeat: contact in contacts -->
+            <li class='venue-show-item' ng-repeat="show in active_show_page">
+               {{ show.node_title }} 
+               <img ng-src='{{ getShowImageSrc(show.image) }}' />
+            </li>
+        </ul>
     </div>
-
-
-    <!-- Date Header -->
-    {{ activeDateMin }} - {{ activeDateMax }}
-    <ul>
-        <!-- ngRepeat: contact in contacts -->
-        <li class='venue-show-item' ng-repeat="show in active_show_page">
-           {{ show.node_title }} 
-           <img ng-src='{{ getShowImageSrc(show.image) }}' />
-        </li>
-    </ul>
 
 
     <!-- FILTER VENUE -->
