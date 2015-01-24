@@ -64,6 +64,7 @@ h1 img{
 .control-group-one span,
 .control-group-two span{
 	padding: 15px 0px;
+	border: 10px solid #ccc;
 }
 
 .control-group-one span{
@@ -105,10 +106,11 @@ h2{
 .controls span{
   font-size: 12px;
   overflow: hidden;
-  display: inline-block;
+  display: block;
   cursor: pointer;
   /*padding: 10px 0px;*/
   background: rgba(0,0,0,0.3);
+
 }
 
 .controls span{
@@ -242,7 +244,7 @@ h2{
 
 .top-menu{
 	/*padding: 20px 0;*/
-	background:black;
+	background:#1F5C99;
 	overflow:hidden;
 }
 
@@ -268,8 +270,13 @@ h2{
 	margin: 0;
 	min-height: 44px;
 	padding: 10px;
-	border-right: 1px solid #f2f2f2;
+	border-right: 1px solid #4C7DAD;
 
+}
+
+.top-menu span *{
+	display: block;
+	clear:both;
 }
 
 .venue-show-item{
@@ -278,23 +285,34 @@ h2{
 	padding: 10px;
 	font-size: 0.8em;
 	display: block;
-	height: 100px;
+	/*height: 100px;*/
+	border-top: 1px solid #333;
 }
 
 .venue-show-item > div{
 	text-align: left;
-	padding: 20px;
-
+	overflow:hidden;
 }
-.venue-show-item h2{
-	float: left;
-	width: 35%;
+
+.venue-show-item .show-title{
+	float:left;
+	margin-top: 1em;
+}
+
+.venue-show-item > img{
+	float:right;
+	max-width: 100px;
 }
 
 .venue-show-item img{
 	display: block;
 	float: right;
 	margin-top: -20px;
+}
+
+.venue-show-item h2 span{
+	display:block;
+	clear:both;
 }
 
 .slide-content-wrapper h2 span{
@@ -306,11 +324,17 @@ h2{
 
 /*NAV SLIDERS*/
 .nav-slider-container{
-	display:inline-block;
 	clear:both;
 	text-align: center;
-	min-width: 320px;
-	margin-top: 20px;
+	width: 100%;
+}
+
+#venue-nav-slidr{
+	max-height: 139px;
+}
+
+#venue-nav-slidr, #venue-nav-slidr div{
+	width: 100%;
 }
 
 .nav-slider-container aside{
@@ -324,7 +348,14 @@ h2{
 }
 
 .nav-slider-container h4{
-	display:block;
-	text-align: center;
-	min-width: 320px;
+	background: rgba(31, 92, 153, .9);
+	z-index: 100;
+	color: white;
+	position: absolute;
+	width: 100%;
+	padding: 5px 0px;
+}
+
+.nav-slider-container img{
+	width: 100%;
 }

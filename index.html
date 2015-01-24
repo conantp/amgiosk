@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html ng-app="amgioskRemote">
 <head>
     <title>AMGiosk Remote</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/app.css" rel="stylesheet">
 </head>
-<body>
+<body id='amgRemoteAppContainer' ng-app="" ng-controller="amgioskRemoteController">
     <h1>
         <img src='/img/logo.png' />
     </h1>
@@ -74,11 +74,11 @@
                     </div>
                 </div>  
                 <div class='venue-pager control-group-two'>
-                    <span class='previous-page'>
+                    <span ng-click="venue_nav_direction = 'left'" class='previous-page'>
                         <i class="fa fa-arrow-circle-left"></i>
                         Back
                     </span>
-                    <span class='next-page'>
+                    <span ng-click="venue_nav_direction = 'right'" ng-class="getClass($index)" class='next-page '>
                         Next
                         <i class="fa fa-arrow-circle-right"></i>
                     </span>
@@ -91,12 +91,12 @@
                     </div>
                 </div>                
                 <div class="control-group-two">
-                    <span class='venue-show-page-previous'>
+                    <span  ng-click="active_show_page_number = active_show_page_number - 1" class='venue-show-page-previous'>
                         <i class="fa fa-home"></i>
                         <i class="fa fa-arrow-circle-left"></i>
                         Back
                     </span>
-                    <span class='venue-show-page-next'>
+                    <span  ng-click="active_show_page_number = active_show_page_number + 1" class='venue-show-page-next'>
                         Next 
                         <i class="fa fa-home"></i>
                         <i class="fa fa-arrow-circle-right"></i>
@@ -139,10 +139,26 @@
     <!-- <h2>Content Window</h2> -->
     <div id='remote-content-window'>
     </div>
+
+
+    <ul>
+        <!-- ngRepeat: contact in contacts -->
+        <li ng-repeat="show in active_show_page">
+           
+           {{ show.node_title }} 
+           <img ng-src='{{ getShowImageSrc(show.image) }}' />
+        </li>
+    </ul>
+
+
     <!-- FILTER VENUE -->
     <div class='neighborhood-picker slideup-window'>
         <h2>Filter by Venue</h2>
         <ul class='neighborhood-list'>
+            <li ng-repeat="venue in getActiveVenueList()" class='venue-item' data-id='{{ venue.nid }}' ng-click="venueListClick(venue)" >
+               <img ng-src='{{ getShowImageSrc(venue.image) }}' />
+                {{ venue.node_title}}
+            </li>
         </ul>
         <div class='cancel'>
             Cancel
@@ -157,7 +173,7 @@
             <input type='search' value='' placeholder='Search' />
         </div>
     </div>
-    
+
     <script src="/node_modules/angular/angular.js"></script>
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>

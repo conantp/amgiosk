@@ -2,20 +2,19 @@
     var mode_changed = false;
       var socket = io();
       var venue_nav_visible = 'one';
-      var venue_nav_direction = 'right';
+      var temp_array;
 
        // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
        socket.emit('get current slide',"please");
+
       $(".module-button").click(function(){
           console.log('change module: ' + $(this).attr('data-amgiosk-module'));
           socket.emit('change module', $(this).attr('data-amgiosk-module'));
       });
 
     
-      $(".next-page").click(function(){
-          socket.emit('page-next', 'page-next');
-      });
+
 
       $(".home-page").click(function(){
           socket.emit('page-today', 'page-today');
@@ -68,6 +67,8 @@
        socket.on('venue detail', function(msg){
         console.log(msg);
 
+
+
         // $('#remote-content-window').append($('<li>').text(msg));
          $('#remote-content-window').html("<div class='venue-detail-item'>" + msg.shows_html + "</div>");
           $(".show-action-buttons").slideUp('fast');
@@ -76,42 +77,26 @@
 
 console.log(msg.venue);
         // Populate the hidden item
-        pop = "one"
-        if(venue_nav_visible == 'one'){
-          pop = "two";
-        }
 
-        $('.remote-venue-item[data-slidr="'+ pop + '"] img').replaceWith($(msg.venue.image).attr('width', '100').removeAttr('height'));
-         $('.remote-venue-item[data-slidr="'+ pop + '"] h4').html(msg.venue.node_title);
-          venue_nav_slider.slide(venue_nav_direction); 
+
+
+        var scope = angular.element($("#amgRemoteAppContainer")).scope();
+
+        scope.$apply(function(){
+            console.log('scope apply');
+            scope.active_venue = msg.venue;
+            scope.active_show_page = scope.active_venue.shows[scope.active_show_page_number];
+            scope.venue_nav_visible = venue_nav_visible;
+            scope.showNewVenue();
+
+        });
+
+
 
       });
 
 
-      socket.on('active slide', function(msg){
-        console.log('active slide received: ' + msg);
-        // active_slide = msg;
-        // // $('#remote-content-window').append($('<li>').text(msg));
-        // $(".action-buttons").slideUp('fast');
-        // if(active_slide == 'show'){
-        //    $(".venue-action-buttons").slideDown('fast');
 
-        // }
-        // else if(active_slide == 'venue'){
-        //  $(".show-action-buttons").slideDown('fast');          
-        // }
-
-        if(active_mode != msg){
-          mode_changed = true;
-        }
-
-        active_mode = msg;
-
-        if(mode_changed){
-          processActiveMode();
-          mode_changed = false;
-        }
-      });
 
 
     function processContentWIndow(){
@@ -119,36 +104,21 @@ console.log(msg.venue);
     }
 
 
-    function processActiveMode(){
-      $(".control-group").slideUp('fast');
-      $(".control-group-"+active_mode).slideDown('fast');
-    }
 
     function render_venue_list(venue_data){
 
-      for(index in venue_data){
-        venue = venue_data[index];
-        key =  'venue-'+venue.nid;
+        temp_array = {};
+        for(index in venue_data){
+            venue = venue_data[index];
+            key =  'venue-'+venue.nid;
 
-        venue_html = "<li class='venue-item' data-id='" + venue.nid + "'>" + venue.image + venue.node_title + "</li>";
-        $(".neighborhood-list").append(venue_html);
+            temp_array[venue.nid] = venue;
+        }
+
+        
+
+
       }
-
-        $(".venue-item").on('click', function(){
-          console.log('neighborhood-list click');
-          socket.emit('neighborhood select', $(this).attr('data-id'));
-
-          $(".neighborhood-picker").slideUp('fast');
-          $("body").removeClass('overlay-visible');
-      });
-
-        $(".cancel").on('click', function(){
-          $(".neighborhood-picker").slideUp('fast');
-          $("body").removeClass('overlay-visible');
-        });
-
-
-  }
 
   // SLIDR FOR DATES
    date_nav_slider = slidr.create('date-nav-slidr', {
@@ -192,8 +162,6 @@ console.log(msg.venue);
 
    venue_nav_array = ['one', 'two', 'one'];
     venue_nav_slider.add('h', venue_nav_array );
-
-
     venue_nav_slider.start();   
 
     $('.venue-show-page-next, .venue-pager .next-page').on('click', function(){
@@ -204,12 +172,121 @@ console.log(msg.venue);
        date_nav_slider.slide('left'); 
      });  
 
-     $('.venue-pager .previous-page').on('click', function(){
-      venue_nav_direction = 'left';
-     });   
+    // Temp location for this
+          $(document).on('click', ".next-page", function(){
+            console.log('new next page click');
+            var scope = angular.element($("#amgRemoteAppContainer")).scope();
+
+            scope.$apply(function(){
+                console.log('scope apply');
+            });
 
 
-     $('.venue-pager .next-page').on('click', function(){
-      venue_nav_direction = 'right';
-     });    
+              socket.emit('page-next', 'page-next');
+          });
 
+
+
+$(".cancel").on('click', function(){
+  $(".neighborhood-picker").slideUp('fast');
+  $("body").removeClass('overlay-visible');
+});
+
+
+// ANGULAR
+var amgioskRemoteApp = angular.module('amgioskRemote', []);
+
+amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scope) {
+    $scope.active_venue = false;
+    $scope.active_show_page_number = 0;
+    $scope.active_mode = false;
+    $scope.venue_nav_direction = 'right';
+    $scope.venue_nav_visible = 'one';
+
+    $scope.active_show_page = false;
+
+    $scope.venue_array = temp_array;
+
+    $scope.getShowImageSrc = function(showImage){
+        return $(showImage).attr('src');
+    }
+
+    $scope.getClass = function(ind){
+        if( ind === $scope.selectedIndex ){
+            return "selected";
+        } else{
+            return "test";
+        }
+    }
+
+    $scope.getActiveVenueList = function(){
+        new_array = [];
+        for(index in $scope.venue_array){
+            venue2= $scope.venue_array[index];
+            // console.log(venue2);
+           // if(typeof venue.shows != 'undefined' && venue.shows.length){
+                new_array.push(venue2);
+            // }
+        }
+        return new_array;
+    }
+
+    $scope.showNewVenue = function() {
+        $scope.active_show_page_number = 0;
+
+        pop = "one"
+        if(venue_nav_visible == 'one'){
+          pop = "two";
+        }
+
+        $('.remote-venue-item[data-slidr="'+ pop + '"] img').replaceWith($($scope.active_venue.image).attr('width', '100').removeAttr('height'));
+        $('.remote-venue-item[data-slidr="'+ pop + '"] h4').html($scope.active_venue.node_title);
+        venue_nav_slider.slide($scope.venue_nav_direction); 
+    }
+
+    $scope.venueListClick = function(item){
+        $scope.active_venue = item;
+                  console.log('neighborhood-list click');
+
+          socket.emit('neighborhood select', item.nid);
+
+          $(".neighborhood-picker").slideUp('fast');
+          $("body").removeClass('overlay-visible');
+    }
+
+    socket.on('active slide', function(msg){
+        console.log('active slide received: ' + msg);
+        console.log($scope);
+        // active_slide = msg;
+        // // $('#remote-content-window').append($('<li>').text(msg));
+        // $(".action-buttons").slideUp('fast');
+        // if(active_slide == 'show'){
+        //    $(".venue-action-buttons").slideDown('fast');
+
+        // }
+        // else if(active_slide == 'venue'){
+        //  $(".show-action-buttons").slideDown('fast');          
+        // }
+
+        if($scope.active_mode != msg){
+          mode_changed = true;
+        }
+
+        $scope.active_mode = msg;
+
+        if(mode_changed){
+                  $(".control-group").slideUp('fast');
+              $(".control-group-"+$scope.active_mode).slideDown('fast');
+
+
+
+          mode_changed = false;
+        }
+        
+
+
+      });
+
+}]);
+
+    
