@@ -4,7 +4,9 @@
   "description": "a touch-free kiosk, using socket.io",
   "dependencies": {
     "express": "^4.10.2",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "angular": "^1",
+    "google-fonts": ">=0"
   },
   "repository": {
 	  "type": "git",
