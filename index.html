@@ -63,20 +63,8 @@
                         <i class="fa fa-list"></i>
                         Venue List
                     </span>
-                </div> 
+                </div>
 
-                <div class="nav-slider-container">
-                    <div id='venue-nav-slidr' class="nav-slider">
-                        <div class='remote-venue-item' data-slidr='one'>
-                            <h4 class='remote-venue-name'>One Stop2</h4>
-                            <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
-                        </div>
-                        <div class='remote-venue-item' data-slidr='two'>
-                            <h4 class='remote-venue-name'>One Stop2</h4>
-                            <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
-                        </div>
-                    </div>
-                </div>  
                 <div class='venue-pager control-group-two'>
                     <span ng-click="venue_nav_direction = 'left'; sendMessage('page-previous') " class='previous-page'>
                         <i class="fa fa-arrow-circle-left"></i>
@@ -86,35 +74,45 @@
                         Next
                         <i class="fa fa-arrow-circle-right"></i>
                     </span>
-                </div> 
-              </div>               
-                <div class="nav-slider-container" style='display: none'>
-                    <div id='date-nav-slidr' class="nav-slider">
-                        <div data-slidr='one'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
-                        <div data-slidr='two'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
+                </div>                   
+            </div>
+            <div class="nav-slider-container">
+                <div id='venue-nav-slidr' class="nav-slider">
+                    <div class='remote-venue-item' data-slidr='one'>
+                        <h4 class='remote-venue-name'>One Stop2</h4>
+                        <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
                     </div>
-                </div>                
-                <div class="control-group-two">
-                    <span  ng-class="getVenueShowPageBackClass()" ng-click="processVenueShowPageClick(false)" class='venue-show-page-previous'>
-                        <i class="fa fa-home"></i>
-                        <i class="fa fa-arrow-circle-left"></i>
-                        Back
-                    </span>
-                    <span  ng-class="getVenueShowPageNextClass()" ng-click="processVenueShowPageClick(true)" class='venue-show-page-next'>
-                        Next 
-                        <i class="fa fa-home"></i>
-                        <i class="fa fa-arrow-circle-right"></i>
-                    </span>
+                    <div class='remote-venue-item' data-slidr='two'>
+                        <h4 class='remote-venue-name'>One Stop2</h4>
+                        <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
+                    </div>
                 </div>
-           
+            </div>                              
+            <div class="nav-slider-container" style='display: none'>
+                <div id='date-nav-slidr' class="nav-slider">
+                    <div data-slidr='one'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
+                    <div data-slidr='two'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
+                </div>
+            </div>                
+            <div class="control-group-two">
+                <span  ng-class="getVenueShowPageBackClass()" ng-click="processVenueShowPageClick(false)" class='venue-show-page-previous'>
+                    <i class="fa fa-home"></i>
+                    <i class="fa fa-arrow-circle-left"></i>
+                    Back
+                </span>
+                <span  ng-class="getVenueShowPageNextClass()" ng-click="processVenueShowPageClick(true)" class='venue-show-page-next'>
+                    Next 
+                    <i class="fa fa-home"></i>
+                    <i class="fa fa-arrow-circle-right"></i>
+                </span>
             </div>
         </div>
-        <div  ng-show='active_mode == "social"'  class="control-group control-group-social control-group-one">
-            Social Controls
-        </div>
-        <div  ng-show='active_mode == "video"'  class='control-group control-group-video control-group-one'>
-            Video Controls
-        </div>
+    </div>
+    <div  ng-show='active_mode == "social"'  class="control-group control-group-social control-group-one">
+        Social Controls
+    </div>
+    <div  ng-show='active_mode == "video"'  class='control-group control-group-video control-group-one'>
+        Video Controls
     </div>
     <div class='controls-one'>
         <div class='controls'>      
@@ -147,8 +145,12 @@
         <ul>
             <!-- ngRepeat: contact in contacts -->
             <li class='venue-show-item' ng-repeat="show in active_show_page">
-               {{ show.node_title }} 
-               <img ng-src='{{ getShowImageSrc(show.image) }}' />
+                <div class="venue-show-inner">
+                    <div class="show-title">
+                        <h2>{{ show.node_title }}</h2>
+                    </div>
+                   <img ng-src='{{ getShowImageSrc(show.image) }}' />
+               </div>
             </li>
         </ul>
     </div>
@@ -177,7 +179,7 @@
         </div>
     </div>
 
-    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/vendor_lib/angular/angular.js"></script>
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>

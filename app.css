@@ -294,22 +294,28 @@ h2{
 .venue-show-item > div{
 	text-align: left;
 	overflow:hidden;
+	min-height: 60px;
 }
 
 .venue-show-item .show-title{
 	float:left;
-	margin-top: 1em;
+	/*margin-top: 1em;*/
+	max-width: 70%;
 }
 
-.venue-show-item > img{
+.venue-show-item img{
 	float:right;
-	max-width: 100px;
+	max-width: 30%;
 }
 
 .venue-show-item img{
 	display: block;
 	float: right;
 	margin-top: -20px;
+}
+
+.venue-show-item h2{
+	padding-right: 10px;
 }
 
 .venue-show-item h2 span{
@@ -364,5 +370,7 @@ h2{
 
 /* PATRICK TEST */
 .venue-show-page-next.bad, .venue-show-page-previous.bad{
-	background: red !important;
+	background: #ddd !important;
+	color: #aaa !important;
+	/*display:none;*/
 }
