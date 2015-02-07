@@ -1,3 +1,8 @@
+/*--------------------------------------------------------------------------------------------------------------
+
+GLOBAL STYLES
+
+--------------------------------------------------------------------------------------------------------------*/
 * { margin: 0; padding: 0; box-sizing: border-box; }
 /*      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
   form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
@@ -14,7 +19,13 @@ body{
 	font-size: 12px;
 	max-width: 500px;
 	margin: auto;
-	/*display:none;*/
+	background: rgba(100,100,100,0.5);
+	color: white;
+	font-size: 1.0em;
+	line-height: 1.4em;
+	font-family: Arial;
+	font-variant: small-caps;
+	text-align: center;
 }
 
 body, span, p, i, b, a{
@@ -51,68 +62,163 @@ h1 img{
 	text-align: center;
 
 }
-.controls{
-  width: 100%;
-
-  text-align: center;
-}
-
-
-.control-group-one,.control-group-two{
-	clear:both;
-	display:block;
-	overflow:hidden;	
-	span{
-		padding: 15px 0px;
-		border: 10px solid #ccc;
-	}
-}
-
-.control-group-one span{
-	width: 100%;
-}
-
-.control-group-two span{
-	width: 50%;
-	margin: 0px;
-	display:inline-block;
-	float:left;
-}
-
-.control-group-two span:first-child{
-	background: #1F5C99;	
-}
-
-.control-group-two span:last-child{
-	background: #4C7DAD;	
-}
-
-body{
-  background: rgba(100,100,100,0.5);
-  color: white;
-  font-size: 1.0em;
-  line-height: 1.4em;
-  font-family: Arial;
-  font-variant: small-caps;
-  text-align: center;
-}
 
 h2{
   margin-bottom: 10px;
 }
 
+
+
+
+/*--------------------------------------------------------------------------------------------------------------
+
+CONTROL GROUP STYLES
+
+--------------------------------------------------------------------------------------------------------------*/
+
+
+
+.controls{
+  width: 100%;
+  position:relative;
+  text-align: center;
+  span{
+	  /*font-size: 12px;*/
+	  overflow: hidden;
+	  display: block;
+	  cursor: pointer;
+	  /*padding: 10px 0px;*/
+	  /*background: rgba(0,0,0,0.3);  	*/
+  }
+}
+
+.control-group{
+	clear:both;
+	display:block; 
+	overflow:hidden;
+	
+	span{
+		padding: 15px 0px;
+		background: #4C7DAD;
+		
+
+	}
+
+	&.control-group-one span{
+		width: 100%;
+	}
+
+	&.control-group-two span{
+		width: 50%;
+	}
+
+	&.control-group-two,
+	&.control-group-header{
+		
+		span{
+			margin: 0px;
+			display:inline-block;
+			float:left;
+			font-size: 2em;			
+		}
+
+	}
+
+	&.control-group-header{
+		
+		span{
+			width: 15%;
+			border-radius: 100px;
+/*			max-width: 50px;
+			max-height: 50px;*/
+		}
+
+		h3{
+			width: 70%;
+			/*float:left;*/
+			display:inline-block;
+		}
+
+	}
+	
+	&.control-group-two span:first-child{
+		/*background: #1F5C99;	*/
+	}
+
+	&.control-group-two span:last-child{
+/*		background: #4C7DAD;	*/
+	}
+
+	&.control-group-slider{
+		position:absolute;
+		z-index: 10;
+		width: 100%;
+		top: 95px;
+		span{
+			background: #4C7DAD !important;			
+		}		
+	}
+
+	&.control-group-shows{
+		margin-top: 20px;
+		padding-bottom: 10px;
+		border-bottom: 5px solid rgb(71, 128, 71);
+		h3{
+			margin-top: 20px;
+		}
+		span{
+			background: rgb(71, 128, 71);
+		}
+	}
+
+	&.slider-nav, &.control-group-header{ 
+
+		span{
+			position:relative;
+			top: 0px;
+			
+
+			i{
+				text-align: center;
+			}
+
+			&.nav-prev{
+				float:left;
+				margin-left: -25px;
+				padding-left: 50px;
+				padding-right: 10px;
+				i{
+					float:right;
+				}
+			}
+			&.nav-next{
+				float:right;
+				margin-right: -25px;
+				padding-right: 50px;
+				padding-left: 10px;
+				i{
+					float:left;
+				}
+			}
+		}
+	}
+
+		
+}
+
+
 .controls i{
 }
 
 .controls span{
-  font-size: 12px;
-  overflow: hidden;
-  display: block;
-  cursor: pointer;
-  /*padding: 10px 0px;*/
-  background: rgba(0,0,0,0.3);
+
 
 }
+
+
+
+
+
 
 .controls span{
 	/*width: 100%;*/
@@ -133,6 +239,13 @@ h2{
 .previous-page:hover{
 	/*background: #e67e22;*/
 }
+
+
+/*--------------------------------------------------------------------------------------------------------------
+
+NEIGHBORHOOD SELECT
+
+--------------------------------------------------------------------------------------------------------------*/
 
 .neighborhood-select-button{
 	/*border: 1px solid white;*/
@@ -212,6 +325,11 @@ h2{
 }
 
 
+/*--------------------------------------------------------------------------------------------------------------
+
+CONTROL GROUP STYLES
+
+--------------------------------------------------------------------------------------------------------------*/
 
 .search-window input{
 	height: 88px;
@@ -238,10 +356,13 @@ h2{
 	background: white;
 }
 
-.control-group{
-	/*display: none;*/
-}
 
+
+/*--------------------------------------------------------------------------------------------------------------
+
+TOP MENU
+
+--------------------------------------------------------------------------------------------------------------*/
 
 .top-menu{
 	/*padding: 20px 0;*/
@@ -332,11 +453,17 @@ h2{
 	font-size: 1.3em;
 }
 
-/*NAV SLIDERS*/
+
+/*--------------------------------------------------------------------------------------------------------------
+
+NAV SLIDERS
+
+--------------------------------------------------------------------------------------------------------------*/
 .nav-slider-container{
 	clear:both;
 	text-align: center;
 	width: 100%;
+
 }
 
 #venue-nav-slidr{
@@ -363,11 +490,12 @@ h2{
 	color: white;
 	position: absolute;
 	width: 100%;
-	padding: 5px 0px;
+	padding: 8px 0px;
 }
 
 .nav-slider-container img{
 	width: 100%;
+	border-bottom: 5px solid #4c7dad;
 }
 
 /* PATRICK TEST */
