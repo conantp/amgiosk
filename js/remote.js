@@ -235,6 +235,7 @@ var amgioskRemoteApp = angular.module('amgioskRemote', []);
 
 amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scope) {
     $scope.active_venue = false;
+    $scope.active_show = false;
     $scope.active_show_page_number = 0;
     $scope.active_mode = false;
     $scope.venue_nav_direction = 'right';
@@ -372,6 +373,13 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
     $scope.sendMessage = function(message){
       console.log('sending message: ' + message);
       socket.emit(message, message);
+    }
+
+    $scope.showDetail = function(show){
+      console.log('show detail: ', show);
+
+
+      // socket.emit(message, message);
     }
 
 

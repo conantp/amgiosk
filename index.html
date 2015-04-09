@@ -144,8 +144,8 @@
         {{ activeDateMin }} - {{ activeDateMax }}
         <ul>
             <!-- ngRepeat: contact in contacts -->
-            <li class='venue-show-item' ng-repeat="show in active_show_page">
-                <div class="venue-show-inner">
+            <li class='venue-show-item' ng-repeat="show in active_show_page" ng-click="showDetail(show)">
+                <div class="venue-show-inner" >
                     <div class="show-title">
                         <h2>{{ show.node_title }}</h2>
                     </div>
