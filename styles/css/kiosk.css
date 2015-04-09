@@ -381,3 +381,28 @@ h2, h3, h4{
 	display:block;
 
 }
+
+.kiosk-main-slide-social{
+	width: 1080px;
+	background: rgba(0,0,0,0.5);
+			padding: 150px 50px;
+
+}
+
+.social-slide-content{
+	width: 900px;
+
+}
+
+.kiosk-main-slide-social h1{
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	background: rgba(0,0,0,1.0);
+}
+
+.social-slide-content iframe{
+	width: 900px !important;
+	margin: 0 auto;
+/*	width: 100%;
+*/}
