@@ -1,0 +1,383 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.4;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin-bottom: .2em;
+}
+
+h1 > span, h2 > span, h3 > span, h4 > span, h5 > span, h6 > span{
+	margin-top: .5em;
+}
+
+span{
+
+}
+
+
+body{
+	background: rgba(0,0,0,0.8);
+	font-family: "Oswald", "Helvetica Neue", "Open Sans", Helvetica;
+	margin: 0px;
+	/*line-height: 1em;*/
+}
+
+.venue-block, .show-item{
+	font-size: 2em;	
+	/*line-height: 1.5em;*/
+}
+
+.wrapper{
+	width: 1080px;
+	height: 1920px;
+	margin:auto;
+	background:white;
+	position: relative;
+}
+
+.center{
+	text-align: center;
+}
+
+h1.logo{
+	position:absolute;
+	left: 10px;
+	top: 0px;
+	z-index: 100;
+	text-align: center;
+	display:block;
+	margin: 0px;
+	background: white;
+	border-radius: 0px 0px 10px 10px;
+	width: 25%;
+	text-align: center;
+	left: 35%;
+}
+
+h1.logo img{
+	/*max-width: 80px;*/
+	max-width: 100%;
+}
+
+h2{
+	font-size: 2em;
+}
+
+h2, h3, h4{
+	font-weight:400;
+}
+
+.kiosk-slide-container{
+	z-index: 0;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+#slidr-id{
+	position:relative;
+	height: 720px;
+}
+
+#slidr-id img{
+	width: 100%;
+	/*height: 500px;*/
+}
+
+.artist-slide-caption{
+/*	color: white;
+	position: absolute;
+	bottom: 0px;
+	text-align:center;
+	width: 100%;*/
+}
+
+.venue-item{
+	max-height: 400px;
+}
+
+.show-item{
+	max-height: 500px;
+}
+
+.venue-item h2 span{
+	font-size: .3em;
+	clear:both;
+	display:block;
+	line-height: .7em;
+}
+
+.venue-item h2, .venue-item span, .show-item h2, .show-item h4{
+	/*font-weight: lighter;*/
+	text-transform: uppercase;
+}
+
+
+.venue-item h2, .show-item h2{
+	text-align: center;
+	line-height: 1.2em;
+	color: white;
+	color: white;
+	text-align:center;
+	margin-top: 170px;
+	margin-bottom: 10px;
+}
+
+.country-name{
+	display: none;
+}
+
+.venue-item .adr{
+	font-size: .7em;
+}
+
+.venue-item img{
+	/*position: absolute;
+	top: 0;
+	left: 0;
+*/
+}
+
+.slide-content-wrapper{
+	color: white;
+	position: absolute;
+	/*bottom: 50px;*/
+	text-align:center;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	/*width: 100%;*/
+		background: rgba(0,0,0,0.7);
+}
+
+.venue-item{
+		position:relative;
+	/*height: 400px;*/
+}
+
+.show-item img{
+
+}
+
+.show-item h2{
+/*	line-height: 1.2em;
+	background: rgba(0,0,0,0.8);
+	padding: 40px;*/
+}
+
+.next, .show-next{
+	color: red;
+	width: 100%;
+	background: white;
+}
+
+/*VENUE SHOW GRID*/
+.venue-show-page-item{
+	background: #1F5C99;
+	width: 100% !important;
+}
+
+#venue-show-block-slidr{
+	background: white;
+	width: 100% !important;	
+}
+.venue-show-item{
+	width: 33.33%;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	overflow: hidden;
+	/* margin-bottom: 20px; */
+	position: relative;
+	/* padding: 20px; */
+	height: 350px;
+	background-image: url('/img/placeholder.png');
+	/* margin: 20px; */
+	background-position: center center;
+	background-color: #ededed;
+	background-repeat: no-repeat;
+}
+
+.venue-show-item .show-title{
+	background: rgba(31, 92, 153, .9);
+	border-radius: 3px;
+	z-index: 100;
+	color: white;
+	position: relative;
+	padding: 20px 0px;
+	margin: 20px;	
+}
+
+.venue-show-item .show-title h2,
+.venue-show-item .show-title span{
+
+}
+
+.venue-show-item .show-title span{
+	font-size: .6em;
+}
+
+.venue-show-item h2{
+	margin: 0px;
+	font-size: 1.6em;
+	/* margin-top: 140px; */
+	/* margin-left: 20px; */
+	/* margin-right: 20px; */
+}
+
+.venue-show-item img{
+	/* margin-top: 10px; */
+	width: auto;
+	position: absolute;
+	top: 0px;
+	height: auto;
+	min-height: 400px;
+}
+
+.date-display-single{
+	font-size: .9em;
+	padding-bottom: 10px;
+	color: #363636;
+}
+
+.venue-show-item * {
+	clear:both;
+	display:block;
+}
+
+.venue-show-item > div{
+	/*padding: 20px 0px;*/
+	/*max-height: 350px;*/
+	height: 270px;
+	overflow:hidden;
+}
+
+/*SHOW PAGE DATE BLOCK*/
+.padded-date{
+	max-height: 400px;
+	width: 100%;
+	display:block;
+	padding: 30px 0px;
+	background: #1F5C99;
+	color: white;
+	text-align:center;
+}
+
+.padded-date *{
+	opacity: .8;
+}
+
+.padded-date i{
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+.padded-date h2{
+	margin-top: 0px;
+	font-size: 3em;
+	line-height: 1em;
+	margin-bottom: .2em;
+}
+
+.padded-date h3{
+	font-size: 1.6em;
+	margin: 0px;
+}
+
+.padded-date > div{
+	width: 100%;
+	text-align: center;
+}
+
+
+
+
+/*Action buttons*/
+
+.action-buttons{
+	background: black;
+	color: white;
+	clear:both;
+	overflow:hidden;	
+}
+
+.action-buttons > div{
+	float:left;
+	width: 50%;
+	display:inline-block;
+	text-align: center;
+	padding: 30px 0px;
+}
+
+.action-buttons > div.action-left div{
+	float:right;
+	padding-right: 20px;
+}
+
+.action-buttons > div.action-right div{
+	float:left;
+	padding-left: 20px;
+}
+
+.action-buttons > div i{
+	/*margin:auto;*/
+	clear: both;
+	display:block;
+	width: 200px;
+	height: 200px;
+	font-size: 200px;
+	border: 20px solid white;
+	padding: 50px;
+	border-radius: 1000px;
+
+}
+
+.action-buttons > div span{
+	margin-bottom: 20px;
+	display:block;
+
+}

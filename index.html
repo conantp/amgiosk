@@ -4,7 +4,7 @@
     <title>AMGiosk Remote</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/app.css" rel="stylesheet">
+    <link href="/styles/css/app.css" rel="stylesheet">
 </head>
 <body id='amgRemoteAppContainer' ng-app="" ng-controller="amgioskRemoteController">
     <h1>
@@ -69,19 +69,20 @@
                     </span>
                 </div>
 
-                <div class='venue-pager control-group-two'>
-                    <span ng-click="venue_nav_direction = 'left'; sendMessage('page-previous') " class='previous-page'>
+                <div class='venue-pager control-group control-group-header control-group-slider'>
+                    <span ng-click="venue_nav_direction = 'left'; sendMessage('page-previous') " class='previous-page nav-prev'>
                         <i class="fa fa-arrow-circle-left"></i>
-                        Back
+                        <!-- Back -->
                     </span>
-                    <span ng-click="venue_nav_direction = 'right'; sendMessage('page-next'); " ng-class="getClass($index)" class='next-page '>
-                        Next
+                    <span ng-click="venue_nav_direction = 'right'; sendMessage('page-next'); " ng-class="getClass($index)" class='next-page nav-next'>
+                        <!-- Next -->
                         <i class="fa fa-arrow-circle-right"></i>
                     </span>
                 </div>                   
             </div>
             <div class="nav-slider-container">
                 <div id='venue-nav-slidr' class="nav-slider">
+                    <!-- VENUES BEING POPULATED BY JAVASCRIPT -->
                     <div class='remote-venue-item' data-slidr='one'>
                         <h4 class='remote-venue-name'>One Stop2</h4>
                         <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
@@ -98,15 +99,17 @@
                     <div data-slidr='two'><h4>Wed Jan 28 2015 - Thu Feb 12 2015</h4></div>
                 </div>
             </div>                
-            <div class="control-group-two">
-                <span  ng-class="getVenueShowPageBackClass()" ng-click="processVenueShowPageClick(false)" class='venue-show-page-previous'>
-                    <i class="fa fa-home"></i>
+            <div class="control-group control-group-header control-group-shows">
+                <span  ng-class="getVenueShowPageBackClass()" ng-click="processVenueShowPageClick(false)" class='venue-show-page-previous nav-prev'>
+                    <!-- <i class="fa fa-home"></i> -->
                     <i class="fa fa-arrow-circle-left"></i>
-                    Back
+                    <!-- Back -->
                 </span>
-                <span  ng-class="getVenueShowPageNextClass()" ng-click="processVenueShowPageClick(true)" class='venue-show-page-next'>
-                    Next 
-                    <i class="fa fa-home"></i>
+                <!-- Date Header -->
+                <h3>{{ activeDateMin }} - {{ activeDateMax }}</h3>
+                <span  ng-class="getVenueShowPageNextClass()" ng-click="processVenueShowPageClick(true)" class='venue-show-page-next nav-next'>
+                    <!-- Next  -->
+                    <!-- <i class="fa fa-home"></i> -->
                     <i class="fa fa-arrow-circle-right"></i>
                 </span>
             </div>
@@ -170,7 +173,7 @@
         <ul class='neighborhood-list'>
             <li ng-repeat="venue in getActiveVenueList()" class='venue-item' data-id='{{ venue.nid }}' ng-click="venueListClick(venue)" >
                <img ng-src='{{ getShowImageSrc(venue.image) }}' />
-                {{ venue.node_title}}
+                {{ venue.node_title }}
             </li>
         </ul>
         <div class='cancel'>
