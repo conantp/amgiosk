@@ -94,7 +94,8 @@ body{
   font-size: 1.0em;
   line-height: 1.4em;
   font-family: Arial;
-  font-variant: small-caps;
+  /* Patrick - No, we can't small caps everything! */
+  /*font-variant: small-caps;*/
   text-align: center;
 }
 
@@ -233,7 +234,7 @@ h2{
 }
 
 #remote-content-window img{
-	width: 100px;
+	width: 100%;
 	height: auto;
 	/*float: left;*/
 	background: white;
@@ -338,7 +339,7 @@ h2{
 }
 
 #venue-nav-slidr{
-	max-height: 139px;
+	max-height: 250px; 
 }
 
 #venue-nav-slidr, #venue-nav-slidr div{
@@ -373,4 +374,16 @@ h2{
 	background: #ddd !important;
 	color: #aaa !important;
 	/*display:none;*/
+}
+
+.band-description{
+	width: 100%;
+	overflow: hidden;
+}
+
+.sub-content-controls{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 }

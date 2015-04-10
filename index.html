@@ -40,7 +40,6 @@
     </div>
     <div class='control-groups'>
         <div ng-show='active_mode == "show"' class='control-group control-group-show'>
-            Show Controls
             <div class='date-pager control-group-two'>
                 <span ng-click="sendMessage('page-previous'); " class='previous-page'>
                     <i class="fa fa-arrow-circle-left"></i>
@@ -54,7 +53,12 @@
         </div>
         <!-- Show Remote Content Detail -->
         <div id='remote-content-window' class='show-content-window' ng-show='active_mode == "show"'>
-
+            <div class='show-item'>
+               <img ng-src='{{ getShowImageSrc(active_show.image) }}' />
+                <h2>{{ active_show.node_title }}</h2>
+                <p class='band-description' ng-bind-html="test_html">Test123</p>
+               <img ng-src='{{ getShowImageSrc(venue_array[active_show.venue].image) }}' />
+            </div>
         </div>        
         <div ng-show='active_mode == "venue"' class='control-group control-group-venue'>
             <div class='controls'>
@@ -109,25 +113,29 @@
         </div>
     </div>
     <div  ng-show='active_mode == "social"'  class="control-group control-group-social control-group-one">
-        Social Controls
+          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/search?q=%23avlent%20OR%20%23avlmusic" data-widget-id="555392673616760832">Tweets about #avlent OR #avlmusic</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
     </div>
     <div  ng-show='active_mode == "video"'  class='control-group control-group-video control-group-one'>
         Video Controls
     </div>
-    <div class='controls-one'>
+    <div class='controls-one sub-content-controls'>
         <div class='controls'>      
             <div id='remote-content-window-container'>
                 <div class='control-groups'>
                     <div  ng-show='active_mode == "show"' class='control-group control-group-show'>
-                        Show Sub Controls
                         <div class="control-group-two" >
-                            <span class='previous-page'>
-                                <i class="fa fa-music"></i>
-                                Tickets
+                            <span class='previous-page' ng-show="active_show.tickets">
+                                <a href='{{ active_show.tickets }}' style="color: white; font-size: 1.5em; text-decoration: none;">
+                                    <i class="fa fa-music"></i>
+                                    Tickets
+                                </a>
                             </span>
                             <span class='previous-page'>
-                                <i class="fa fa-music"></i>
-                                Listen
+                                <a href='{{ active_show.path }}' style="color: white; font-size: 1.5em; text-decoration: none;">
+                                    <i class="fa fa-music"></i>
+                                    Details
+                                </a>
                             </span>
                         </div>
                     </div>
@@ -180,6 +188,7 @@
     </div>
 
     <script src="/vendor_lib/angular/angular.js"></script>
+
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>

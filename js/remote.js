@@ -3,6 +3,7 @@
       var socket = io();
       var venue_nav_visible = 'one';
       var temp_array;
+      var scope;
 
        // var socket = io.connect('https://stark-ocean-5135.herokuapp.com');
 
@@ -25,8 +26,23 @@
 
       socket.on('featured show', function(msg){
         // $('#remote-content-window').append($('<li>').text(msg));
-         $('.show-content-window').html("<div class='show-item'>" + msg + "</div>");
+
+        // PRC Are these necessary?
          $(".show-action-buttons").slideDown('fast');
+         $(".venue-action-buttons").slideUp('fast');
+
+          scope = angular.element($("#amgRemoteAppContainer")).scope();
+
+        scope.$apply(function(){
+            console.log('show scope apply', msg);
+
+              scope.active_show = msg.show;
+                        scope.setActiveMode('show');
+
+
+//           $('.show-content-window').html("<div class='show-item'>" + msg + "</div>");
+
+        });
       });
 
      socket.on('venue detail', function(msg){
@@ -247,8 +263,9 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
 
     $scope.socket = socket;
 
-    $scope.activeDateMin = '231';
-    $scope.activeDateMax = '456';
+    $scope.activeDateMin = '';
+    $scope.activeDateMax = '';
+
 
     $scope.getShowImageSrc = function(showImage){
         return $(showImage).attr('src');
@@ -378,7 +395,10 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
     $scope.showDetail = function(show){
       console.log('show detail: ', show);
 
-
+      // show.body_html = $sce.trustAsHtml(show.body);
+      show.venue_image = $scope.venue_array[show.venue].image;
+      $scope.active_show = show;
+      $scope.setActiveMode('show');
       // socket.emit(message, message);
     }
 

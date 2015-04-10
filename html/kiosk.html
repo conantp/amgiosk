@@ -23,24 +23,13 @@
           </div>
           <div class='date-block'>
             <div id='date-block-slidr' class="padded-date">
-<!--               <div class='date-item'>
-                <h2>Wednesday, January 27 2015</h2>
-                <div>
-                  <span class='doors'>
-                    Doors: 7:00 PM / Show 7:15 PM 
-                  </span>
-                  <span class='tickets'>
-                    Tickets: $10 ADV / $12 DOS
-                  </span>
-                </div>
-              </div> -->
-              <div data-slidr='date-0'>
-                <h2>Thursday – January 8, 2015</h2>
-                <h3>Doors: 7pm/Show: 7:15pm | Tickets: $10 - $12</h3>
+              <div class='date-container' data-slidr='date-0'>
+                <h2 class='date-info'></h2>
+                <h3></h3>
               </div>
-              <div data-slidr='date-1'>
-                <h2>Thursday – January 8, 2015</h2>
-                <h3>Doors: 7pm/Show: 7:15pm | Tickets: $10 - $12</h3>
+              <div class='date-container' data-slidr='date-1'>
+                <h2 class='date-info'></h2>
+                <h3></h3>
               </div>              
             </div>
           </div>
@@ -113,10 +102,16 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="/js/kiosk.js"></script>
+    <!-- Production -->
     <script src="http://www.ashevillemusicguide.com/testservice/views/kiosk_shows.jsonp?callback=amgiosk_load_show_data_json"></script>
-
-        <script src="http://www.ashevillemusicguide.com/testservice/views/kiosk_venue_shows.jsonp?callback=amgiosk_load_venue_show_json"></script>
+    <script src="http://www.ashevillemusicguide.com/testservice/views/kiosk_venue_shows.jsonp?callback=amgiosk_load_venue_show_json"></script>
     <script src="http://www.ashevillemusicguide.com/testservice/views/venue_image.jsonp?callback=amgiosk_load_venue_image_json"></script>
+    
+    <!-- Dev 
+    <script src="/js/dev_js/kiosk_shows_dev.js"></script>
+    <script src="/js/dev_js/kiosk_venue_shows_dev.js"></script>
+    <script src="/js/dev_js/venue_image_dev.js"></script>
+    -->
 
     <script type='text/javascript'>
           setActiveSlide();
