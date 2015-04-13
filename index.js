@@ -109,7 +109,15 @@ socket.on('get current slide', function(msg){
 	    io.emit('change module', msg);
 	  });
 
+	socket.on('play_video', function(msg){
+			console.log('play video: ' + msg);
+		    io.emit('play_video', msg);
+		  });
 
+	socket.on('pause_video', function(msg){
+			console.log('pause video: ' + msg);
+		    io.emit('pause_video', msg);
+		  });
 
 
 	

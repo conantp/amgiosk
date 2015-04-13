@@ -130,7 +130,6 @@
 
 
     function render_venue_list(venue_data){
-
         temp_array = {};
         for(index in venue_data){
             venue = venue_data[index];
@@ -138,10 +137,6 @@
 
             temp_array[venue.nid] = venue;
         }
-
-        
-
-
       }
 
   // SLIDR FOR DATES
@@ -266,6 +261,23 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
     $scope.activeDateMin = '';
     $scope.activeDateMax = '';
 
+    $scope.video_playing = false;
+
+    $scope.active_video = false;
+
+    $scope.playVideo = function(videoID){
+      console.log("Play Video", videoID);
+      $scope.video_playing = true;
+      socket.emit('play_video', videoID);
+    }
+
+    $scope.pauseVideo = function(videoID){
+      console.log("Pause Video", videoID);
+      $scope.video_playing = false;
+      socket.emit('pause_video', videoID);
+
+    }
+
 
     $scope.getShowImageSrc = function(showImage){
         return $(showImage).attr('src');
@@ -286,9 +298,9 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
         for(index in $scope.venue_array){
             venue2= $scope.venue_array[index];
             // console.log(venue2);
-           // if(typeof venue.shows != 'undefined' && venue.shows.length){
+           //if(typeof venue2.shows != 'undefined' && venue2.shows.length){
                 new_array.push(venue2);
-            // }
+            //}
         }
         return new_array;
     }

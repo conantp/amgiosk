@@ -138,7 +138,19 @@
 
         </div>
         <div  ng-show='active_mode == "video"'  class='control-group control-group-video control-group-one'>
-            Video Controls
+            <div style="background: #40ce2a;">
+                <img src='http://iamavl.com/wp-content/themes/pinbin/images/logo.png' />
+            </div>
+            <div class='video-play-button' ng-show='! video_playing' ng-click='playVideo("LeoAbZtHSb0")'>
+                <h2>PLAY</h2>
+                <img src='http://img.youtube.com/vi/LeoAbZtHSb0/0.jpg' />
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
+            </div>
+            <div class='video-pause-button' ng-show='video_playing' ng-click='pauseVideo("LeoAbZtHSb0")'>
+                <h2>Pause</h2>
+                <img src='http://img.youtube.com/vi/LeoAbZtHSb0/0.jpg' />
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
+            </div>
         </div>
         <div class='controls-one sub-content-controls'>
             <div class='controls'>      
