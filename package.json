@@ -3,13 +3,14 @@
   "version": "0.0.2",
   "description": "a touch-free kiosk, using socket.io",
   "dependencies": {
+    "angular": "^1.4.0-rc.0",
+    "angular-animate": "^1.4.0-rc.0",
     "express": "^4.10.2",
-    "socket.io": "^1.2.1",
-    "angular": "^1",
-    "google-fonts": ">=0"
+    "google-fonts": ">=0",
+    "socket.io": "^1.2.1"
   },
   "repository": {
-	  "type": "git",
-	  "url": "git://github.com/conantp/amgiosk.git"
-	}
+    "type": "git",
+    "url": "git://github.com/conantp/amgiosk.git"
+  }
 }

@@ -1,3 +1,9 @@
+/* PRC Color Vars */
+
+
+@primary_color: #4C7DAD;
+
+
 /*--------------------------------------------------------------------------------------------------------------
 
 GLOBAL STYLES
@@ -32,7 +38,8 @@ body{
 	color: white;
 	font-size: 1.0em;
 	line-height: 1.4em;
-	font-family: Arial;
+	font-family: "Oswald", "Helvetica Neue", "Open Sans", Helvetica;
+	font-weight: lighter;
 	/*font-variant: small-caps;*/
 	text-align: center;
 }
@@ -579,4 +586,111 @@ NAV SLIDERS
 
 .wrapper{
 	background: #E8E8E8; 
+}
+
+.waiting-for-kiosk{ 
+	background: black;
+	font-size: 20px;
+	padding: 20px;
+	font-family: "Helvetica Neue";
+	font-weight: lighter;
+
+	img{
+		display: block;
+		margin: 20px auto;
+	}
+
+}
+
+
+/* PRC Added Loader 
+http://projects.lukehaas.me/css-loaders/
+*/
+.loader {
+  font-size: 10px;
+  margin: 5em auto;
+  text-indent: -9999em;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+  background: #ffffff;
+  background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #FFF;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+/*  background: fade(saturate(@primary_color, 50%), 90%);
+*/
+  background: black;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+/* PRC Angular Animate */
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: red;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
 }
