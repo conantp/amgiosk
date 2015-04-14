@@ -49,7 +49,7 @@
                 </li>
             </ul>
         </div>
-        <div class='control-groups'>
+        <div id='main-control-area' class='control-groups'>
             <div ng-show='! active_mode'>
                 <div class='waiting-for-kiosk'>
                     Waiting for Kiosk
@@ -104,12 +104,14 @@
                         <div id='venue-nav-slidr' class="nav-slider">
                             <!-- VENUES BEING POPULATED BY JAVASCRIPT -->
                             <div class='remote-venue-item' data-slidr='one'>
-                                <h4 class='remote-venue-name'>One Stop2</h4>
-                                <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
+                                <h4 class='remote-venue-name'>Loading...</h4>
+                                <img class='remote-venue-detail'  src="/img/loadinfo.gif"/>
+                            
                             </div>
                             <div class='remote-venue-item' data-slidr='two'>
-                                <h4 class='remote-venue-name'>One Stop2</h4>
-                                <img class='remote-venue-detail' width="100" src="/img/odditorium.jpg"/>                            
+                                <h4 class='remote-venue-name'>Loading...</h4>
+                                <img class='remote-venue-detail' src="/img/loadinfo.gif"/>
+
                             </div>
                         </div>
                     </div>
@@ -147,15 +149,17 @@
             <div style="background: #40ce2a;">
                 <img src='http://iamavl.com/wp-content/themes/pinbin/images/logo.png' />
             </div>
-            <div class='video-play-button' ng-show='! video_playing' ng-click='playVideo("LeoAbZtHSb0")'>
-                <h2>PLAY</h2>
-                <img src='http://img.youtube.com/vi/LeoAbZtHSb0/0.jpg' />
-                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
-            </div>
-            <div class='video-pause-button' ng-show='video_playing' ng-click='pauseVideo("LeoAbZtHSb0")'>
-                <h2>Pause</h2>
-                <img src='http://img.youtube.com/vi/LeoAbZtHSb0/0.jpg' />
-                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
+            <img class='video-image' src='http://img.youtube.com/vi/LeoAbZtHSb0/0.jpg' />
+
+            <div class='video-button-container'>
+                <div class='video-button video-play-button' ng-show='! video_playing' ng-click='playVideo("LeoAbZtHSb0")'>
+                    <i class="fa fa-play-circle"></i>
+                    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
+                </div>
+                <div class='video-button video-pause-button' ng-show='video_playing' ng-click='pauseVideo("LeoAbZtHSb0")'>
+                    <i class="fa fa-pause"></i>
+                    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/LeoAbZtHSb0" frameborder="0" allowfullscreen></iframe> -->
+                </div>
             </div>
         </div>
         <div class='controls-one sub-content-controls'>
@@ -236,7 +240,8 @@
     <!-- END WRAPPER DIV -->
 
 
-    <script src="/vendor_lib/angular/angular.js"></script>
+    <script src="/vendor_lib/angular/angular.min.js"></script>
+    <script src="/vendor_lib/angular-animate/angular-animate.min.js"></script>
 
     <script src="/js/slidr/slidr.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>

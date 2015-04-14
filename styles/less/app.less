@@ -673,24 +673,49 @@ http://projects.lukehaas.me/css-loaders/
   }
 }
 
+.video-button-container{
+	position: relative;
+	top: -365px;
+	height: 400px;
+	left: 0;
+	z-index: 9999999999;
+	padding: 20px;
+	text-align: center;
+
+}
+
+.video-button{
+	position: absolute;
+	width: 90%;
+	top: 50px;
+
+	i{
+		font-size: 20em;
+		color: white;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.video-image{
+	margin: 20px auto;
+	width: 90%;
+	display: block;
+}
+
 
 /* PRC Angular Animate */
-.animate-show {
-  line-height: 20px;
-  opacity: 1;
-  padding: 10px;
-  border: 1px solid black;
-  background: red;
+.video-button {
+
+  opacity: 1; 
 }
 
-.animate-show.ng-hide-add.ng-hide-add-active,
-.animate-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
+.video-button.ng-hide-add.ng-hide-add-active,
+.video-button.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.3s;
+  transition: all linear 0.3s;
 }
 
-.animate-show.ng-hide {
-  line-height: 0;
+.video-button.ng-hide {
   opacity: 0;
-  padding: 0 10px;
 }

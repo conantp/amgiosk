@@ -242,7 +242,7 @@ $(".cancel").on('click', function(){
 
 
 // ANGULAR
-var amgioskRemoteApp = angular.module('amgioskRemote', []);
+var amgioskRemoteApp = angular.module('amgioskRemote', ['ngAnimate']);
 
 amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scope) {
     $scope.active_venue = false;
