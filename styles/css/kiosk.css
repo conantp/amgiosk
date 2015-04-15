@@ -411,3 +411,20 @@ h4 {
   margin-bottom: 20px;
   display: block;
 }
+/* Social Slide Content */
+.social-slide-content {
+  text-align: center;
+  margin: 0 auto;
+  width: 1080px !important;
+}
+.social-slide-content h1 {
+  font-size: 5em;
+  background: #4c7dad;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(1, 1, 1, 0.8);
+}
+.social-slide-content iframe {
+  margin: 30px auto !important;
+  width: 800px !important;
+  height: 1800px;
+}

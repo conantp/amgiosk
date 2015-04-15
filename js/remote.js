@@ -67,6 +67,8 @@
             console.log('scope apply');
 
             new_venue = false;
+            console.log("Message", msg, scope.active_venue);
+            
             if(msg.venue.nid != scope.active_venue.nid){
               scope.active_venue = msg.venue;
               new_venue = true;
@@ -307,7 +309,7 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
 
     $scope.showNewVenue = function() {
         // $scope.active_show_page_number = 0;
-
+ 
         pop = "one"
         if(venue_nav_visible == 'one'){
           pop = "two";
@@ -319,8 +321,8 @@ amgioskRemoteApp.controller('amgioskRemoteController', ['$scope', function($scop
     }
 
     $scope.venueListClick = function(item){
-        $scope.active_venue = item;
-                  console.log('neighborhood-list click');
+        // $scope.active_venue = item;
+          console.log('neighborhood-list click');
 
           socket.emit('neighborhood select', item.nid);
 

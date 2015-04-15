@@ -20,6 +20,8 @@ var active_venue_show_page_number = 0;
 
 var active_show = false;
 
+var active_date_slidr_elm = 1;
+
 function handleNewSlide(e){
         console.log( e); 
 
@@ -165,6 +167,7 @@ function amgiosk_load_show_data_json(input){
   });
     show_block.add('h', show_key_array );
     show_block.start();
+    updateShowPageContent();
 }
 
 
@@ -172,7 +175,9 @@ function amgiosk_load_show_data_json(input){
 
 date_block = slidr.create('date-block-slidr', {
     // after: function(e) { console.log('in: ' + e.in.slidr); },
-    // before: function(e) { console.log('out: ' + e.out.slidr); },
+    before: function(e) { 
+      console.log('out: ' + e.out.slidr); 
+      active_date_slidr_elm=e.out.slidr.replace('date-', '');   },
     breadcrumbs: false,
     controls: 'corner',
     direction: 'horizontal',
@@ -194,7 +199,7 @@ date_key_array = ['date-0', 'date-1', 'date-0'];
 
 
 function updateShowPageContent(){
-  active_show = show_array[show_block_index];
+  active_show = show_array[parseInt(show_key_array[show_block_index].replace("show-", ""))];
 
   console.log('active show', active_show);
 
@@ -202,7 +207,6 @@ function updateShowPageContent(){
 
   if(active_show.date){
     date_text = $(active_show.date).html()+"<br />";
-
   }
   else{
     date_text = "";
@@ -221,9 +225,9 @@ function updateShowPageContent(){
     price_text = "";
   }
 
-  $(".date-container h3").html(date_text + " "+ time_text + price_text);
+  $(".date-container[data-slidr='date-" + active_date_slidr_elm + "']").find("h3").html(date_text + " "+ time_text + price_text);
 
-  setTimeout( date_block.slide('left'), 100);
+  setTimeout( date_block.slide('right'), 100);
   setTimeout( venue_block.slide('venue-'+active_show.venue), 300);
 
   sendContentWindow();
@@ -425,16 +429,14 @@ kiosk.id = 1;
 
     socket.on('page-down', function(msg){
       console.log("Message received: "+ msg);
-            main_slide_controller.slide('right');
+      main_slide_controller.slide('right');
       setActiveSlide();
-
     });
 
-        socket.on('neighborhood select', function(msg){
-      console.log("Message received: "+ msg);
-            venue_block.slide('venue-'+msg);
-            venue_block2.slide('venue-'+msg);
-
+    socket.on('neighborhood select', function(msg){
+        console.log("Message received: "+ msg);
+        venue_block2.slide('venue-'+msg);
+        sendContentWindow();
             // venue_show_block.slide('venue-show-page-'+msg+"-0");
 
     });
@@ -483,7 +485,7 @@ function sendContentWindow(){
     sendShowHTML();
   }
   else if(active_mode == 'venue'){
-    console.log('hey');
+    console.log('Sending Venue Content');
     sendVenueHTML();
   }
   else if(active_mode == 'social'){
@@ -527,7 +529,9 @@ function sendShowHTML(){
 
           data = {};
 
-          data.show = show_data[show_block_index];
+          // data.show = show_data[show_block_index];
+           data.show = show_array[parseInt(show_key_array[show_block_index].replace("show-", ""))];
+
    //       data.show_html =  $(".show-item[data-slidr='" + active_show_id + "']");
 // console.log('data', data);
         socket.emit('featured show', data );
